@@ -26,91 +26,47 @@
 					<label>PA : <input type="number" name="pa" value="38" readonly="readonly" id="attribute-points" class="form-control"/></label>
 				</div>
 				<div class="col-auto">
-					<label>PC alloués : <input type="number" name="pc-to-pa" value="0" min="0" max="20" class="form-control" /></label>
+					<label>PC alloués : <input type="number" id="pc-to-pa" value="0" min="0" max="20" class="form-control" /></label>
 				</div>
 			</div>
-			<div class="form-row">
-				<div class="col-auto">
-					<div class="input-group">
-						<label>Force : </label>
-						<input type="number" id="attr-FOR" value="7" min="7" max="20" class="input-group-text input-group-prepend" />
-						<div class="input-group-append">
-							<button class="btn btn-secondary" type="button" id="btn-d-for">-</button>
-							<button class="btn btn-primary" type="button" id="btn-u-for">+</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-auto">
-					<div class="input-group">
-						<label>Constitution : </label>
-						<input type="number" id="attr-CON" value="7" min="7" max="20" readonly="readonly" class="input-group-text input-group-prepend" />
-						<div class="input-group-append">
-							<button class="btn btn-secondary" type="button">-</button>
-							<button class="btn btn-primary" type="button">+</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-auto">
-					<div class="input-group">
-						<label>Coordination : </label>
-						<input type="number" id="attr-COO" value="7" min="7" max="20" readonly="readonly" class="input-group-text input-group-prepend" />
-						<div class="input-group-append">
-							<button class="btn btn-secondary" type="button">-</button>
-							<button class="btn btn-primary" type="button">+</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-auto">
-					<div class="input-group">
-						<label>Adaptation : </label>
-						<input type="number" id="attr-ADA" value="7" min="7" max="20" readonly="readonly" class="input-group-text input-group-prepend" />
-						<div class="input-group-append">
-							<button class="btn btn-secondary" type="button">-</button>
-							<button class="btn btn-primary" type="button">+</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-auto">
-					<div class="input-group">
-						<label>Perception : </label>
-						<input type="number" id="attr-PER" value="7" min="7" max="20" readonly="readonly" class="input-group-text input-group-prepend" />
-						<div class="input-group-append">
-							<button class="btn btn-secondary" type="button">-</button>
-							<button class="btn btn-primary" type="button">+</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-auto">
-					<div class="input-group">
-						<label>Intelligence : </label>
-						<input type="number" id="attr-INT" value="7" min="7" max="20" readonly="readonly" class="input-group-text input-group-prepend" />
-						<div class="input-group-append">
-							<button class="btn btn-secondary" type="button">-</button>
-							<button class="btn btn-primary" type="button">+</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-auto">
-					<div class="input-group">
-						<label>Volonté : </label>
-						<input type="number" id="attr-VOL" value="7" min="7" max="20" readonly="readonly" class="input-group-text input-group-prepend" />
-						<div class="input-group-append">
-							<button class="btn btn-secondary" type="button">-</button>
-							<button class="btn btn-primary" type="button">+</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-auto">
-					<div class="input-group">
-						<label>Prestance : </label>
-						<input type="number" id="attr-PRE" value="7" min="7" max="20" readonly="readonly" class="input-group-text input-group-prepend" />
-						<div class="input-group-append">
-							<button class="btn btn-secondary" type="button">-</button>
-							<button class="btn btn-primary" type="button">+</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<table>
+				<tr>
+					<th>Force</th>
+					<th>Constitution</th>
+					<th>Coordination</th>
+					<th>Adaptation</th>
+					<th>Perception</th>
+					<th>Intelligence</th>
+					<th>Volonté</th>
+					<th>Prestance</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+					</td>
+					<td>
+						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+					</td>
+					<td>
+						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+					</td>
+					<td>
+						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+					</td>
+					<td>
+						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+					</td>
+					<td>
+						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+					</td>
+					<td>
+						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+					</td>
+					<td>
+						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+					</td>
+				</tr>
+			</table>
 		</form>
 	</body>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

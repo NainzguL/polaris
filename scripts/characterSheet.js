@@ -1,4 +1,5 @@
 $(function(){
+	console.log(comps);
 	$(".used-pc").change(function(){
 		$("#left-pc").val(20 - $(this).val());
 	});

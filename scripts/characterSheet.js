@@ -24,7 +24,10 @@ $(function(){
 		refreshRemainingAp();
 	});
 	$(":input[type=number]").on("change", function(){
-		if (($(this).val() < $(this).attr("min")) || ($(this).val() > $(this).attr("max"))) {
+		const min = parseInt($(this).attr("min"));
+		const max = parseInt($(this).attr("max"));
+		const n = parseInt($(this).val());
+		if ((n < min) || (n > max)) {
 			$(this).addClass("is-invalid");
 		} else {
 			$(this).removeClass("is-invalid");

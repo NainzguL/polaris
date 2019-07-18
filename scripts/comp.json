@@ -1,3 +1,18 @@
+
+var comps = {
+		"bureaucracy": {
+			"name": "Bureaucratie †",
+			"base": 0,
+			"attr": ["int", "vol"],
+		},
+		"education": {
+			"name": "Éducation/Culture générale",
+			"base": -3,
+			"attr": ["int", "int"],
+		},
+};
+
+/*
 var comps = {
 	"Aptitudes physiques" : {
 		"Acrobatie/Équilibre •" : [0, "COO", "COO"],
@@ -169,4 +184,4 @@ var comps = {
 		"Méditation" : ["X", "VOL", "VOL"],
 		"Pouvoirs liés à l’Effet Polaris" : ["X", "INT", "VOL"],
 	}
-};
+*/

@@ -42,31 +42,67 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+						<input type="number" value="7" min="7" max="20" class="form-control attr" id="for-field" />
 					</td>
 					<td>
-						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+						<input type="number" value="7" min="7" max="20" class="form-control attr" id="con-field" />
 					</td>
 					<td>
-						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+						<input type="number" value="7" min="7" max="20" class="form-control attr" id="coo-field" />
 					</td>
 					<td>
-						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+						<input type="number" value="7" min="7" max="20" class="form-control attr" id="ada-field" />
 					</td>
 					<td>
-						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+						<input type="number" value="7" min="7" max="20" class="form-control attr" id="per-field" />
 					</td>
 					<td>
-						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+						<input type="number" value="7" min="7" max="20" class="form-control attr" id="int-field" />
 					</td>
 					<td>
-						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+						<input type="number" value="7" min="7" max="20" class="form-control attr" id="vol-field" />
 					</td>
 					<td>
-						<input type="number" value="7" min="7" max="20" class="form-control attr" />
+						<input type="number" value="7" min="7" max="20" class="form-control attr" id="pre-field" />
 					</td>
 				</tr>
 			</table>
+			
+			<hr>
+			
+			<!-- Competence -->
+			<!-- Note the list of competence must be generate with php from the compt.json file -->
+			<h1>Compétence</h1>
+			<table>
+				<tr>
+					<th>Nom</th>
+					<th>Attributs</th>
+					<th>Base</th>
+					<th>Maîtrise</th>
+				</tr>
+				<tr>
+					<td>Bureaucratie †</td>
+					<td>INT/VOL</td>
+					<td>
+						<input type="number" value="0" min="0" readonly="readonly" class="form-control cmp-base" id="bureaucracy-base-field" />
+					</td>
+					<td>
+						<input type="number" value="0" min="0"  max="20" class="form-control cmp-mastery" id="bureaucracy-mastery-field" />
+					</td>
+				</tr>
+				<tr>
+					<td>Éducation/Culture générale</td>
+					<td>INT/INT</td>
+					<td>
+						<input type="number" value="0" min="0" readonly="readonly" class="form-control cmp-base" id="education-base-field" />
+					</td>
+					<td>
+						<input type="number" value="0" min="0" max="20" class="form-control cmp-mastery" id="education-mastery-field" />
+					</td>
+				</tr>
+				
+			</table>
+			
 		</form>
 	</body>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

@@ -1,6 +1,7 @@
 const tables = {
 	attributes: [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 9, 12, 16, 20, 25, 31, 38],
-	skills: [0, 1, 2, 3, 4, 5, 7, 9, 11, 13, 15, 18, 23, 29, 35, 41, 47, 53, 59, 65]
+	skills: [0, 1, 2, 3, 4, 5, 7, 9, 11, 13, 15, 18, 23, 29, 35, 41, 47, 53, 59, 65],
+	attributesToBase: [-1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5],
 };
 
 function refreshRemainingAp() {
@@ -13,6 +14,19 @@ function refreshRemainingAp() {
 	$("#attribute-points").val(attPts - sum);
 }
 
+function refreshCompetence() {
+	$(".cmp-base").map(function(){
+		var associatedAttr = comps[$(this).attr('id').split("-")[0]]["attr"];
+		var sum = 0;
+		for (i = 0; i < associatedAttr.length; i++) {
+			var attrFieldId = "#".concat(associatedAttr[i]).concat("-field")
+			var attrVal = $(attrFieldId).val();
+			sum += tables["attributesToBase"][attrVal];
+		}
+		$(this).val(sum);
+		});
+}
+
 $(function(){
 	console.log(comps);
 	$("#pc-to-pa").change(function(){
@@ -22,6 +36,7 @@ $(function(){
 	});
 	$(".attr").change(function(){
 		refreshRemainingAp();
+		refreshCompetence();
 	});
 	$(":input[type=number]").on("change", function(){
 		const min = parseInt($(this).attr("min"));

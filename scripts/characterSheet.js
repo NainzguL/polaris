@@ -14,17 +14,28 @@ function refreshRemainingAp() {
 	$("#attribute-points").val(attPts - sum);
 }
 
+function refreshOneCompetence(cmp) {
+	console.log(cmp);
+	var cmpId = cmp.attr('id').split("-")[0];
+	var baseVal = parseInt($("#".concat(cmpId).concat("-base-field")).val());
+	var maitVal = parseInt($("#".concat(cmpId).concat("-mastery-field")).val());
+	console.log(baseVal);
+	console.log(maitVal);
+	cmp.val(baseVal + maitVal);
+}
+
 function refreshCompetence() {
 	$(".cmp-base").map(function(){
 		var associatedAttr = comps[$(this).attr('id').split("-")[0]]["attr"];
 		var sum = 0;
 		for (i = 0; i < associatedAttr.length; i++) {
-			var attrFieldId = "#".concat(associatedAttr[i]).concat("-field")
-			var attrVal = $(attrFieldId).val();
+			var attrFieldId = "#".concat(associatedAttr[i]).concat("-field");
+			var attrVal = parseInt($(attrFieldId).val());
 			sum += tables["attributesToBase"][attrVal];
 		}
 		$(this).val(sum);
-		});
+	});
+	$(".cmp-total").map(function(){ refreshOneCompetence($(this));});
 }
 
 $(function(){
@@ -47,5 +58,9 @@ $(function(){
 		} else {
 			$(this).removeClass("is-invalid");
 		}
+	});
+	$(".cmp-mastery").on("change", function(){
+		var cmpId = $(this).attr('id').split("-")[0];
+		refreshOneCompetence($("#".concat(cmpId).concat("-total-field")));
 	});
 });

@@ -73,12 +73,18 @@
 			<!-- Competence -->
 			<!-- Note the list of competence must be generate with php from the compt.json file -->
 			<h1>Compétence</h1>
+			<div class="form-row">
+				<div class="col-auto">
+					<label>Année d'experience : <input type="number" value="0" id="year-experience-field" value="0" min="0" max="20" class="form-control"/></label>
+				</div>
+			</div>
 			<table>
 				<tr>
 					<th>Nom</th>
 					<th>Attributs</th>
 					<th>Base</th>
 					<th>Maîtrise</th>
+					<th>Total</th>
 				</tr>
 				<tr>
 					<td>Bureaucratie †</td>
@@ -89,6 +95,9 @@
 					<td>
 						<input type="number" value="0" min="0"  max="20" class="form-control cmp-mastery" id="bureaucracy-mastery-field" />
 					</td>
+					<td>
+						<input type="number" value="0" readonly="readonly" class="form-control cmp-total" id="bureaucracy-total-field"/>
+					</td>
 				</tr>
 				<tr>
 					<td>Éducation/Culture générale</td>
@@ -98,6 +107,9 @@
 					</td>
 					<td>
 						<input type="number" value="0" min="0" max="20" class="form-control cmp-mastery" id="education-mastery-field" />
+					</td>
+					<td>
+						<input type="number" value="0" readonly="readonly" class="form-control cmp-total" id="education-total-field" />
 					</td>
 				</tr>
 				

@@ -1,15 +1,28 @@
 
 var comps = {
+	"physicalSkills" : {
+		"balance": {
+			"base": 0,
+			"attr": ["coo", "coo"],
+		},
+		"athletism": {
+			"base": 0,
+			"attr": ["for", "coo"],
+		},
+	},
+	"knowledge" : {
 		"bureaucracy": {
-			"name": "Bureaucratie †",
+			"requirement" : {
+				"education" : 5,
+			},
 			"base": 0,
 			"attr": ["int", "vol"],
 		},
 		"education": {
-			"name": "Éducation/Culture générale",
 			"base": -3,
 			"attr": ["int", "int"],
 		},
+	},
 };
 
 /*

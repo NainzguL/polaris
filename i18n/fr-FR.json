@@ -1,0 +1,10 @@
+var locale = {
+		"physicalSkills" : "Aptitudes Physiques",
+		"knowledge" : "Connaissances",
+
+		"balance" : "Acrobatie/Équilibre",
+		"athletism" : "Athlétisme",
+		
+		"bureaucracy" : "Bureaucratie",
+		"education" : "Éducation/Culture générale",
+};

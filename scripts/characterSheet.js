@@ -21,6 +21,60 @@ function refreshOneCompetence(cmp) {
 	cmp.val(baseVal + maitVal);
 }
 
+/**
+ * This function compute the number of comptence point that the player must spend 
+ * in order to gain one level of mastery
+ * 
+ * @param curentMastery an int, the current mastery level
+ * @param careerCmp an bool, false if the competence is not the carrer, in this case the mastery level cost double.
+ * 
+ */
+function getCmpPointCostOneLevel(curentMastery, careerCmp) {
+	let ret =0
+	if (curentMastery <= 5) {
+		ret = 1;
+	}
+	else if (curentMastery <= 10) {
+		ret = 2
+	}
+	else if (curentMastery <= 15) {
+		ret = 3
+	}
+	else {
+		ret = 3 + curentMastery - 15;
+	}
+	return careerCmp ? ret : ret*2;
+}
+
+/**
+ * This function compute the number of comptence point that the player must spend 
+ * in order to increase his level of mastery of mastery to the wanted value
+ */
+function getCmpPointCost(curentMastery, wantedMastery, careerCmp) {
+	let total = 0;
+	if (wantedMastery <= curentMastery) {
+		return total;
+	}
+	for (let i = curentMastery + 1; i <= wantedMastery; i++) {
+		total = total + getCmpPointCostOneLevel(i, careerCmp);
+	}
+	return total
+}
+
+function refreshCmpPoint() {
+	let avialable = parseInt($("#year-experience-field").val()) * 20;
+	let totalSpended = $(".cmp-mastery").map(function(){return getCmpPointCost(parseInt($(this).attr("min")), parseInt($(this).val()), true);})
+									  .toArray()
+									  .reduce(function(accumulate, val) { return accumulate + val;});
+	$("#competence-point-field").val(avialable - totalSpended);
+}
+
+function refreshLeftPc() {
+	var pcForPa = $("#pc-to-pa").val();
+	var pcForCmp = $("#year-experience-field").val();
+	$("#left-pc").val(20 - pcForPa - pcForCmp);
+}
+
 function refreshCompetence() {
 	$(".cmp-base").map(function(){
 		let comp = undefined;
@@ -49,13 +103,18 @@ $(function(){
 	console.log(comps);
 	console.log(locale);
 	$("#pc-to-pa").change(function(){
-		$("#left-pc").val(20 - $(this).val());
 		$("#attribute-points").val($("#attribute-points").val() + 2 * $(this).val());
+		refreshLeftPc();
 		refreshRemainingAp();
+	});
+	$("#year-experience-field").change(function(){
+		refreshLeftPc();
+		refreshCmpPoint();
 	});
 	$(".attr").change(function(){
 		refreshRemainingAp();
 		refreshCompetence();
+		refreshCmpPoint();
 	});
 	$(":input[type=number]").on("change", function(){
 		let min = parseInt($(this).attr("min"));
@@ -83,5 +142,6 @@ $(function(){
 	$(".cmp-mastery").on("change", function(){
 		let cmpId = $(this).attr('id').split("-")[0];
 		refreshOneCompetence($("#".concat(cmpId).concat("-total-field")));
+		refreshCmpPoint();
 	});
 });

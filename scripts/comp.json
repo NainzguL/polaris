@@ -1,4 +1,3 @@
-
 var comps = {
 	"physicalSkills" : {
 		"balance": {
@@ -9,6 +8,116 @@ var comps = {
 			"base": 0,
 			"attr": ["for", "coo"],
 		},
+		"endurance": {
+			"base": 0,
+			"attr": ["con", "vol"],
+		},
+		"climbing": {
+			"base": 0,
+			"attr": ["for", "coo"],
+		},
+		"breathing": {
+			"base": -3,
+			"attr": ["con", "vol"],
+		},
+	},
+	"closeCombat" : {
+		"closeHeavyWeapons": {
+			"base": 0,
+			"attr": ["for", "for"],
+		},
+		"closeSpecialWeapons": {
+			"base": -3,
+			"attr": ["coo", "coo"],
+		},
+		"aggressiveMartialArts": {
+			"base": -3,
+			"attr": ["coo", "ada"],
+		},
+		"defensiveMartialArts": {
+			"base": -3,
+			"attr": ["coo", "ada"],
+		},
+		"wrestling": {
+			"base": -3,
+			"attr": ["coo", "ada"],
+		},
+		"unarmedStruggle": {
+			"base": 0,
+			"attr": ["for", "coo"],
+		},
+		"armedStruggle": {
+			"base": 0,
+			"attr": ["for", "coo"],
+		},
+	},
+	"rangeCombat" : {
+		"throwingWeapons": {
+			"base": -3,
+			"attr": ["coo", "per"],
+		},
+		"handguns": {
+			"base": 0,
+			"attr": ["coo", "per"],
+		},
+		"rangedWeapons": {
+			"base": 0,
+			"attr": ["coo", "per"],
+		},
+		"heavyGuns": {
+			"base": -3,
+			"attr": ["coo", "per"],
+		},
+		"specialGuns": {
+			"base": -3,
+			"attr": ["for", "coo"],
+		},
+		"longGuns": {
+			"base": 0,
+			"attr": ["coo", "per"],
+		},
+		"sniper": {
+			"base": -3,
+			"attr": ["per", "vol"],
+		},
+	},
+	"socialeSkill" : {
+		"psychology": {
+			"base": -3,
+			"attr": ["int", "per"],
+		},
+		"leadership": {
+			"base": 0,
+			"attr": ["vol", "pre"],
+		},
+		"eloquence": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"singing ": {
+			"base": -3,
+			"attr": ["vol", "pre"],
+		},
+		"storyteller": {
+			"base": -3,
+			"attr": ["ada", "pre"],
+		},
+		"dance": {
+			"base": -3,
+			"attr": ["coo", "pre"],
+		},
+		"music": {
+			"base": -4,
+			"attr": ["coo", "per"],
+		},
+		"intimidation": {
+			"base": 0,
+			"attr": ["vol","pre"],
+		},
+		"gambling": {
+			"base": 0,
+			"attr": ["vol", "per"],
+		},
 	},
 	"knowledge" : {
 		"bureaucracy": {
@@ -18,183 +127,495 @@ var comps = {
 			"base": 0,
 			"attr": ["int", "vol"],
 		},
+		"cryptography": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
 		"education": {
 			"base": -3,
 			"attr": ["int", "int"],
 		},
+		"navigation": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"seeking ": {
+			"base": -3,
+			"attr": ["int", "int"],
+		},
+		"tradeFood": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"tradeRawMaterial": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"tradeDevice": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"tradeElectronic": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"tradeMedical": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"tradeInformation": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"tradeVehicle": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"tradeWeapon": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"tradeDrug": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"tradeBlack": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natHegemonie": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"natRedLeague": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"natCoralRepublic": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"natEquinoxe": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"natMediterraneanUnion": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"natPolarAlliance ": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natAmazonia": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natRiftState": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natEnderby": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natCapFederation": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natFuegoLibertad": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natLemurie": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natRodhia": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natIndus": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natWatchmen": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"natMercenary": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"natMilitary": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natPirate": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natSmuggler": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natScavenger": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natCriminality": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natTridentWorship": {
+			"base": -3,
+			"attr": ["int", "pre"],
+		},
+		"natBlackSun": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natAbysseBrother": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natLeviathan": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natThemis": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natGeneticist": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"natAllianceAzure": {
+			"base": -4,
+			"attr": ["int", "pre"],
+		},
+		"kwonAdministration": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonWeapons": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonAstrophysics": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonBiologie": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonBionic": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonBiotechnology": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonBotany": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonForensics": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonLaw": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonEconomic": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonGeology": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonGeography": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonHistory": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonMedicine": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonNanotechnology": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonPharmacology": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonPhysics": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonPsychology": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonRobotics": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonPoliticalScience": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonSociology": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonTelecom ": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"kwonZoology": {
+			"base": -4,
+			"attr": ["int", "int"],
+		},
+		"navalWarfare": {
+			"base": -3,
+			"attr": ["int", "ada"],
+		},
+		"undergroundlWarfare": {
+			"base": 0,
+			"attr": ["int", "ada"],
+		},
+		"landCombat ": {
+			"base": 0,
+			"attr": ["int", "ada"],
+		},
+		"commandoOperation": {
+			"base": 0,
+			"attr": ["int", "ada"],
+		},
 	},
-};
-
-/*
-var comps = {
-	"Aptitudes physiques" : {
-		"Acrobatie/Équilibre •" : [0, "COO", "COO"],
-		"Athlétisme" : [0, "FOR", "COO"],
-		"Endurance •" : [0, "CON", "VOL"],
-		"Escalade" : [0, "FOR", "COO"],
-		"Respiration FOE" : [-3, "CON", "VOL"]
+	"furtivity" : {
+		"dissimulation": {
+			"base": -3,
+			"attr": ["per", "ada"],
+		},
+		"disguise": {
+			"base": 0,
+			"attr": ["ada", "pre"],
+		},
+		"discretion": {
+			"base": 0,
+			"attr": ["per", "ada"],
+		},
+		"escape": {
+			"base": -4,
+			"attr": ["coo", "vol"],
+		},
+		"stealth": {
+			"base": 0,
+			"attr": ["per", "ada"],
+		},
+		"pickpocket": {
+			"base": -3,
+			"attr": ["coo", "ada"],
+		},
+		"hacking": {
+			"base": -4,
+			"attr": ["vol", "ada"],
+		},
+		"monitoring": {
+			"base": -4,
+			"attr": ["per", "ada"],
+		},
 	},
-	"Combat (contact)" : {
-		"Armes lourdes (contact)" : [0, "FOR", "FOR"],
-		"Armes spéciales (contact)" : [-3, "COO", "COO"],
-		"Arts martiaux [Offensif] •" : [-3, "COO", "ADA"],
-		"Arts martiaux [Défensif] •" : [-3, "COO", "ADA"],
-		"Arts martiaux [Lutte] •" : [-3, "COO", "ADA"],
-		"Combat à mains nues" : [0, "FOR", "COO"],
-		"Combat armé" : [0, "FOR", "COO"]
+	"steering" : {
+		"atmosphericBattlesuits": {
+			"base": -4,
+			"attr": ["coo", "ada"],
+		},
+		"externalBattlesuits ": {
+			"base": 0,
+			"attr": ["coo", "ada"],
+		},
+		"underwaterBattlesuits ": {
+			"base": 0,
+			"attr": ["coo", "ada"],
+		},
+		"fighterFlying": {
+			"base": -4,
+			"attr": ["int", "ada"],
+		},
+		"vesselsPilotage": {
+			"base": -4,
+			"attr": ["int", "ada"],
+		},
+		"spacecraftDriving": {
+			"base": -4,
+			"attr": ["int", "ada"],
+		},
+		"vehicleDriving": {
+			"base": -4,
+			"attr": ["per", "ada"],
+		},
+		"scootersDriving": {
+			"base": 0,
+			"attr": ["per", "ada"],
+		},
+		"remotePiloting": {
+			"base": -3,
+			"attr": ["int", "ada"],
+		},
 	},
-	"Combat (tir)" : {
-		"Armes de jet" : [-3, "COO", "PER"],
-		"Armes de poing" : [0, "COO", "PER"],
-		"Armes de trait" : [0, "COO", "PER"],
-		"Armes lourdes (tir)" : [-3, "COO", "PER"],
-		"Armes spéciales (tir)" : [-3, "FOR", "COO"],
-		"Fusils/Armes d’épaule" : [0, "COO", "PER"],
-		"Tir de précision •" : [-3, "PER", "VOL"]
+	"survivalCat" : {
+		"hunting": {
+			"base": 0,
+			"attr": ["per", "ada"],
+		},
+		"knowCity": {
+			"base": 0,
+			"attr": ["int", "ada"],
+		},
+		"knowOceans": {
+			"base": -3,
+			"attr": ["int", "ada"],
+		},
+		"knowUnderground": {
+			"base": -3,
+			"attr": ["int", "ada"],
+		},
+		"knowLand": {
+			"base": -4,
+			"attr": ["int", "ada"],
+		},
+		"observation": {
+			"base": 0,
+			"attr": ["per", "vol"],
+		},
+		"orientation": {
+			"base": 0,
+			"attr": ["per", "ada"],
+		},
+		"survival": {
+			"base": -4,
+			"attr": ["ada", "vol"],
+		},
+		"firstAid": {
+			"base": -3,
+			"attr": ["int", "ada"],
+		},
 	},
-	"Communication/Relations sociales" : {
-		"Analyse empathique" : [-3, "INT", "PER"],
-		"Commandement" : [0, "VOL", "PRE"],
-		"Éloquence/Persuasion †" : [0, "INT", "PRE"],
-		"Expression artistique [Chant]" : [-3, "VOL", "PRE"],
-		"Expression artistique [Comédie/Conte]" : [-3, "ADA", "PRE"],
-		"Expression artistique [Danse]" : [-3, "COO", "PRE"],
-		"Expression artistique [Musique]" : ["X", "COO", "PER"],
-		"Intimidation" : [0, "VOL","PRE"],
-		"Jeu" : [0, "VOL", "PER"]
+	"techniques" : {
+		"onboardInstrumentation": {
+			"base": -4,
+			"attr": ["int", "ada"],
+		},
+		"farming": {
+			"base": 0,
+			"attr": ["int", "pre"],
+		},
+		"surgery": {
+			"base": -4,
+			"attr": ["coo", "int"],
+		},
+		"animalsTraining": {
+			"base": -3,
+			"attr": ["vol", "pre"],
+		},
+		"electronic": {
+			"base": -4,
+			"attr": ["int", "coo"],
+		},
+		"explosive": {
+			"base": -4,
+			"attr": ["int", "vol"],
+		},
+		"tampering": {
+			"base": -4,
+			"attr": ["int", "per"],
+		},
+		"computing": {
+			"base": -3,
+			"attr": ["int", "ada"],
+		},
+		"mechanicsLifeSupport": {
+			"base": 0,
+			"attr": ["coo", "int"],
+		},
+		"mechanicsMachinery": {
+			"base": 0,
+			"attr": ["coo", "int"],
+		},
+		"mechanicsVehicle": {
+			"base": 0,
+			"attr": ["coo", "int"],
+		},
+		"mechanicsBattleSuits": {
+			"base": 0,
+			"attr": ["coo", "int"],
+		},
+		"mechanicsVessel ": {
+			"base": 0,
+			"attr": ["coo", "int"],
+		},
+		"traps": {
+			"base": -3,
+			"attr": ["coo", "per"],
+		},
+		"security": {
+			"base": -4,
+			"attr": ["int", "ada"],
+		},
 	},
-	"Connaissances" : {
-		"Bureaucratie †" : [0, "INT", "VOL"],
-		"Cryptographie †" : ["X", "INT", "INT"],
-		"Éducation/Culture générale" : [-3, "INT", "INT"],
-		"Navigation †" : ["X", "INT", "INT"],
-		"Recherche d’informations †" : [-3, "INT", "INT"],
-		"Commerce/Trafic [Denrées alimentaires] †" : [-3, "INT", "PRE"],
-		"Commerce/Trafic [Matières premières] †" : [-3, "INT", "PRE"],
-		"Commerce/Trafic [Équipement] †" : [-3, "INT", "PRE"],
-		"Commerce/Trafic [Matériel Électronique] †" : [-3, "INT", "PRE"],
-		"Commerce/Trafic [Matériel médical] †" : [-3, "INT", "PRE"],
-		"Commerce/Trafic [Informations] †" : [-3, "INT", "PRE"],
-		"Commerce/Trafic [Véhicules] †" : [-3, "INT", "PRE"],
-		"Commerce/Trafic [Armes] †" : ["X", "INT", "PRE"],
-		"Commerce/Trafic [Drogues/Poisons] †" : ["X", "INT", "PRE"],
-		"Commerce/Trafic [Marché noir] †" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Hégémonie] • (PN)" : [0, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Ligue rouge] • (PN)" : [0, "INT", "PRE"],
-		"Connaissance des nations/Organisations [République du Corail] • (PN)" : [0, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Équinoxe] • (PN)" : [0, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Union Méditerranéenne] • (PN)" : [0, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Alliance Polaire] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Amazonia] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [États du Rift] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Confédération d'Enderby] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Fédération du Cap] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Fuego Libertad] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Nouvelle Lémurie] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Rodhia] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Royaume de l'Indus] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Veilleurs] • (PN)" : [0, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Mercenaires] • (PN)" : [0, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Militaire] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Pirates] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Contrebandiers] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Charognards] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Crime organisé] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Culte du Trident] • (PN)" : [-3, "INT", "PRE"],
-		"Connaissance des nations/Organisations [Confrérie du Soleil noir] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Frères des Abysses] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Léviathan] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Thémis] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Généticiens] • (PN)" : ["X", "INT", "PRE"],
-		"Connaissance des nations/Organisations [Alliance Azure] • (PN)" : ["X", "INT", "PRE"],
-		"Sciences/Connaissances spécialisées [Administration/Gestion] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Armes/Systèmes d’armement] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Astrophysique/Astronomie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Biologie/Physiologie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Bionique/Cybertechnologie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Biotechnologie/Génie génétique] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Botanique] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Criminalistique] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Droit/Législations] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Économie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Géologie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Géographie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Histoire/Archéologie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Logiciel] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Médecine] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Nanotechnologie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Pharmacologie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Physique/Chimie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Psychologie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Robotique] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Sciences politiques] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Sociologie] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Télécommunication] †" : ["X", "INT", "INT"],
-		"Sciences/Connaissances spécialisées [Zoologie] †" : ["X", "INT", "INT"],
-		"Tactique [Combat naval]" : [-3, "INT", "ADA"],
-		"Tactique [Combat souterrain]" : [0, "INT", "ADA"],
-		"Tactique [Combat terrestre]" : [0, "INT", "ADA"],
-		"Tactique [Opération Commando]" : [0, "INT", "ADA"],
-	},
-	"Furtivité/Subterfuge" : {
-		"Camouflage/Dissimulation" : [-3, "PER", "ADA"],
-		"Déguisement/Imitation" : [0, "ADA", "PRE"],
-		"Discrétion/Filature" : [0, "PER", "ADA"],
-		"Évasion" : ["X", "COO", "VOL"],
-		"Furtivité/Déplacement silencieux •" : [0, "PER", "ADA"],
-		"Pickpocket" : [-3, "COO", "ADA"],
-		"Piratage informatique †" : ["X", "VOL", "ADA"],
-		"Espionnage/Surveillance" : ["X", "PER", "ADA"],
-	},
-	"Pilotage" : {
-		"Manoeuvre d’armures [atmosphériques/spaciales] •" : ["X", "COO", "ADA"],
-		"Manoeuvre d’armures [externes] •" : [0, "COO", "ADA"],
-		"Manoeuvre d’armures [sous-marines] •" : [0, "COO", "ADA"],
-		"Pilotage [Chasseurs] †" : ["X", "INT", "ADA"],
-		"Pilotage [Navires] †" : ["X", "INT", "ADA"],
-		"Pilotage [Engins spatiaux/atmosphériques] †" : ["X", "INT", "ADA"],
-		"Pilotage [Véhicules]" : ["X", "PER", "ADA"],
-		"Pilotage [Scooters sous-marins]" : [0, "PER", "ADA"],
-		"Télépilotage" : [-3, "INT", "ADA"],
-	},
-	"Survie/Extérieur" : {
-		"Chasse/Pistage" : [0, "PER", "ADA"],
-		"Connaissance d’un milieu [Cités et stations sous-marines] • (PN)" : [0, "INT", "ADA"],
-		"Connaissance d’un milieu [Océans] • (PN)" : [-3, "INT", "ADA"],
-		"Connaissance d’un milieu [Souterrains] • (PN)" : [-3, "INT", "ADA"],
-		"Connaissance d’un milieu [Surface] • (PN)" : ["X", "INT", "ADA"],
-		"Observation" : [0, "PER", "VOL"],
-		"Orientation" : [0, "PER", "ADA"],
-		"Survie" : ["X", "ADA", "VOL"],
-		"Premiers soins" : [-3, "INT", "ADA"],
-	},
-	"Techniques" : {
-		"Instruments embarqués" : ["X", "INT", "ADA"],
-		"Aquaculture/Élevage" : [0, "INT", "PRE"],
-		"Chirurgie †" : ["X", "COO", "INT"],
-		"Dressage" : [-3, "VOL", "PRE"],
-		"Électronique †" : ["X", "INT", "COO"],
-		"Explosifs" : ["X", "INT", "VOL"],
-		"Falsification †" : ["X", "INT", "PER"],
-		"Informatique †" : [-3, "INT", "ADA"],
-		"Mécanique [Générateur/système de survie] †" : [0, "COO", "INT"],
-		"Mécanique [Machinerie]" : [0, "COO", "INT"],
-		"Mécanique [Véhicule]" : [0, "COO", "INT"],
-		"Mécanique [Exo-armure] †" : [0, "COO", "INT"],
-		"Mécanique [Navire] †" : [0, "COO", "INT"],
-		"Pièges" : [-3, "COO", "PER"],
-		"Systèmes de sécurité" : ["X", "INT", "ADA"],
-	},
-	"Compétences spéciales" : {
-		"Absence" : ["X", "ADA", "VOL"],
-		"Bouclier mental" : ["X", "VOL", "VOL"],
-		"Contrôle corporel" : ["X", "CON", "VOL"],
-		"Mutations" : ["X"],
-		"Hybride" : ["X", "CON", "COO"],
-		"Hypnose" : ["X", "VOL", "PRE"],
-		"Maîtrise de l’Écho Polaris" : ["X", "INT", "VOL"],
-		"Maîtrise de l’Effet Polaris" : ["X", "VOL", "VOL"],
-		"Méditation" : ["X", "VOL", "VOL"],
-		"Pouvoirs liés à l’Effet Polaris" : ["X", "INT", "VOL"],
+	"specialCat" : {
+		"absence": {
+			"base": -4,
+			"attr": ["ada", "vol"],
+		},
+		"mentalShield": {
+			"base": -4,
+			"attr": ["vol", "vol"],
+		},
+		"bodyControl ": {
+			"base": -4,
+			"attr": ["con", "vol"],
+		},
+		"mutations": {
+			"base": -4,
+			"attr": ["con", "vol"],
+		},
+		"hybrid": {
+			"base": -4,
+			"attr": ["vol", "pre"],
+		},
+		"hypnosis": {
+			"base": -4,
+			"attr": ["vol", "pre"],
+		},
+		"controlPolarisEcho": {
+			"base": -4,
+			"attr": ["int", "vol"],
+		},
+		"controlPolarisEffect": {
+			"base": -4,
+			"attr": ["vol", "vol"],
+		},
+		"Meditation ": {
+			"base": -4,
+			"attr": ["vol", "vol"],
+		},
+		"polarisPower": {
+			"base": -4,
+			"attr": ["int", "vol"],
+		},
 	}
-*/
+};

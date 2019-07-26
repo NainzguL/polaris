@@ -3,6 +3,7 @@ var comps = {
 		"balance": {
 			"base": 0,
 			"attr": ["coo", "coo"],
+			"limiting": true,
 		},
 		"athletism": {
 			"base": 0,
@@ -11,6 +12,7 @@ var comps = {
 		"endurance": {
 			"base": 0,
 			"attr": ["con", "vol"],
+			"limiting": true,
 		},
 		"climbing": {
 			"base": 0,
@@ -33,14 +35,17 @@ var comps = {
 		"aggressiveMartialArts": {
 			"base": -3,
 			"attr": ["coo", "ada"],
+			"limiting": true,
 		},
 		"defensiveMartialArts": {
 			"base": -3,
 			"attr": ["coo", "ada"],
+			"limiting": true,
 		},
 		"wrestling": {
 			"base": -3,
 			"attr": ["coo", "ada"],
+			"limiting": true,
 		},
 		"unarmedStruggle": {
 			"base": 0,
@@ -79,6 +84,7 @@ var comps = {
 		"sniper": {
 			"base": -3,
 			"attr": ["per", "vol"],
+			"limiting": true,
 		},
 	},
 	"socialeSkill" : {
@@ -93,8 +99,11 @@ var comps = {
 		"eloquence": {
 			"base": 0,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"singing ": {
+		"singing": {
 			"base": -3,
 			"attr": ["vol", "pre"],
 		},
@@ -107,7 +116,7 @@ var comps = {
 			"attr": ["coo", "pre"],
 		},
 		"music": {
-			"base": -4,
+			"base": null,
 			"attr": ["coo", "per"],
 		},
 		"intimidation": {
@@ -128,264 +137,454 @@ var comps = {
 			"attr": ["int", "vol"],
 		},
 		"cryptography": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
 		"education": {
 			"base": -3,
 			"attr": ["int", "int"],
 		},
 		"navigation": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"seeking ": {
+		"seeking": {
 			"base": -3,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
 		"tradeFood": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 5,
+			},
 		},
 		"tradeRawMaterial": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 5,
+			},
 		},
 		"tradeDevice": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 5,
+			},
 		},
 		"tradeElectronic": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
 		"tradeMedical": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
 		"tradeInformation": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 5,
+			},
 		},
 		"tradeVehicle": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 5,
+			},
 		},
 		"tradeWeapon": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 5,
+			},
 		},
 		"tradeDrug": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 5,
+			},
 		},
 		"tradeBlack": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"requirement" : {
+				"education" : 5,
+			},
 		},
 		"natHegemonie": {
 			"base": 0,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natRedLeague": {
 			"base": 0,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natCoralRepublic": {
 			"base": 0,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natEquinoxe": {
 			"base": 0,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natMediterraneanUnion": {
 			"base": 0,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
-		"natPolarAlliance ": {
+		"natPolarAlliance": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natAmazonia": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natRiftState": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natEnderby": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natCapFederation": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natFuegoLibertad": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natLemurie": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natRodhia": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natIndus": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natWatchmen": {
 			"base": 0,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natMercenary": {
 			"base": 0,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natMilitary": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natPirate": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natSmuggler": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natScavenger": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natCriminality": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natTridentWorship": {
 			"base": -3,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natBlackSun": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natAbysseBrother": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natLeviathan": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natThemis": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natGeneticist": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"natAllianceAzure": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "pre"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
-		"kwonAdministration": {
-			"base": -4,
+		"knowAdministration": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonWeapons": {
-			"base": -4,
+		"knowWeapons": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonAstrophysics": {
-			"base": -4,
+		"knowAstrophysics": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowPhysics" : 10,
+			},
 		},
-		"kwonBiologie": {
-			"base": -4,
+		"knowBiology": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonBionic": {
-			"base": -4,
+		"knowBionic": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowBiology" : 10,
+			},
 		},
-		"kwonBiotechnology": {
-			"base": -4,
+		"knowBiotechnology": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowBiology" : 10,
+			},
 		},
-		"kwonBotany": {
-			"base": -4,
+		"knowBotany": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowBiology" : 7,
+			},
 		},
-		"kwonForensics": {
-			"base": -4,
+		"knowForensics": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowPhysics" : 5,
+				"knowSociology" : 5,
+			},
 		},
-		"kwonLaw": {
-			"base": -4,
+		"knowLaw": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonEconomic": {
-			"base": -4,
+		"knowEconomic": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonGeology": {
-			"base": -4,
+		"knowGeology": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowPhysics" : 5,
+			},
 		},
-		"kwonGeography": {
-			"base": -4,
+		"knowGeography": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonHistory": {
-			"base": -4,
+		"knowHistory": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonMedicine": {
-			"base": -4,
+		"knowSoftware": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"computing" : 10,
+			},
 		},
-		"kwonNanotechnology": {
-			"base": -4,
+		"knowMedicine": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowBiology" : 7,
+			},
 		},
-		"kwonPharmacology": {
-			"base": -4,
+		"knowNanotechnology": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowPhysics" : 10,
+			},
 		},
-		"kwonPhysics": {
-			"base": -4,
+		"knowPharmacology": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowBiology" : 5,
+				"knowPhysics" : 5,
+			},
 		},
-		"kwonPsychology": {
-			"base": -4,
+		"knowPhysics": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonRobotics": {
-			"base": -4,
+		"knowPsychology": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonPoliticalScience": {
-			"base": -4,
+		"knowRobotics": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"computing" : 10,
+				"electronic" : 10,
+			},
 		},
-		"kwonSociology": {
-			"base": -4,
+		"knowPoliticalScience": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowGeography" : 7,
+				"knowHistory" : 5,
+			},
 		},
-		"kwonTelecom ": {
-			"base": -4,
+		"knowSociology": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
-		"kwonZoology": {
-			"base": -4,
+		"knowTelecom": {
+			"base": null,
 			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"computing" : 5,
+				"electronic" : 10,
+			},
+		},
+		"knowZoology": {
+			"base": null,
+			"attr": ["int", "int"],
+			"requirement" : {
+				"education" : 10,
+				"knowBiology" : 7,
+			},
 		},
 		"navalWarfare": {
 			"base": -3,
@@ -395,7 +594,7 @@ var comps = {
 			"base": 0,
 			"attr": ["int", "ada"],
 		},
-		"landCombat ": {
+		"landCombat": {
 			"base": 0,
 			"attr": ["int", "ada"],
 		},
@@ -418,53 +617,70 @@ var comps = {
 			"attr": ["per", "ada"],
 		},
 		"escape": {
-			"base": -4,
+			"base": null,
 			"attr": ["coo", "vol"],
 		},
 		"stealth": {
 			"base": 0,
 			"attr": ["per", "ada"],
+			"limiting": true,
 		},
 		"pickpocket": {
 			"base": -3,
 			"attr": ["coo", "ada"],
 		},
 		"hacking": {
-			"base": -4,
+			"base": null,
 			"attr": ["vol", "ada"],
+			"requirement" : {
+				"computing" : 10,
+			},
 		},
 		"monitoring": {
-			"base": -4,
+			"base": null,
 			"attr": ["per", "ada"],
 		},
 	},
 	"steering" : {
 		"atmosphericBattlesuits": {
-			"base": -4,
+			"base": null,
 			"attr": ["coo", "ada"],
+			"limiting": true,
 		},
-		"externalBattlesuits ": {
+		"externalBattlesuits": {
 			"base": 0,
 			"attr": ["coo", "ada"],
+			"limiting": true,
 		},
-		"underwaterBattlesuits ": {
+		"underwaterBattlesuits": {
 			"base": 0,
 			"attr": ["coo", "ada"],
+			"limiting": true,
 		},
 		"fighterFlying": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "ada"],
+			"requirement" : {
+				"education" : 10,
+				"athletism" : 10,
+			},
 		},
 		"vesselsPilotage": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "ada"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
 		"spacecraftDriving": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "ada"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
 		"vehicleDriving": {
-			"base": -4,
+			"base": null,
 			"attr": ["per", "ada"],
 		},
 		"scootersDriving": {
@@ -484,18 +700,26 @@ var comps = {
 		"knowCity": {
 			"base": 0,
 			"attr": ["int", "ada"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"knowOceans": {
 			"base": -3,
 			"attr": ["int", "ada"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"knowUnderground": {
 			"base": -3,
 			"attr": ["int", "ada"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"knowLand": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "ada"],
+			"limiting": true,
+			"naturalIncrease" : true,
 		},
 		"observation": {
 			"base": 0,
@@ -506,7 +730,7 @@ var comps = {
 			"attr": ["per", "ada"],
 		},
 		"survival": {
-			"base": -4,
+			"base": null,
 			"attr": ["ada", "vol"],
 		},
 		"firstAid": {
@@ -516,7 +740,7 @@ var comps = {
 	},
 	"techniques" : {
 		"onboardInstrumentation": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "ada"],
 		},
 		"farming": {
@@ -524,32 +748,49 @@ var comps = {
 			"attr": ["int", "pre"],
 		},
 		"surgery": {
-			"base": -4,
+			"base": null,
 			"attr": ["coo", "int"],
+			"requirement" : {
+				"knowMedicine" : 10,
+			},
 		},
 		"animalsTraining": {
 			"base": -3,
 			"attr": ["vol", "pre"],
 		},
 		"electronic": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "coo"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
 		"explosive": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "vol"],
 		},
 		"tampering": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "per"],
+			"requirement" : {
+				"bureaucracy" : 7,
+				"computing" : 7,
+				"electronic" : 7,
+			},
 		},
 		"computing": {
 			"base": -3,
 			"attr": ["int", "ada"],
+			"requirement" : {
+				"education" : 10,
+			},
 		},
 		"mechanicsLifeSupport": {
 			"base": 0,
 			"attr": ["coo", "int"],
+			"requirement" : {
+				"electronic" : 5,
+			},
 		},
 		"mechanicsMachinery": {
 			"base": 0,
@@ -562,59 +803,65 @@ var comps = {
 		"mechanicsBattleSuits": {
 			"base": 0,
 			"attr": ["coo", "int"],
+			"requirement" : {
+				"electronic" : 5,
+			},
 		},
-		"mechanicsVessel ": {
+		"mechanicsVessel": {
 			"base": 0,
 			"attr": ["coo", "int"],
+			"requirement" : {
+				"electronic" : 5,
+			},
 		},
 		"traps": {
 			"base": -3,
 			"attr": ["coo", "per"],
 		},
 		"security": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "ada"],
 		},
 	},
 	"specialCat" : {
 		"absence": {
-			"base": -4,
+			"base": null,
 			"attr": ["ada", "vol"],
 		},
 		"mentalShield": {
-			"base": -4,
+			"base": null,
 			"attr": ["vol", "vol"],
 		},
-		"bodyControl ": {
-			"base": -4,
+		"bodyControl": {
+			"base": null,
 			"attr": ["con", "vol"],
 		},
 		"mutations": {
-			"base": -4,
+			"base": null,
 			"attr": ["con", "vol"],
 		},
 		"hybrid": {
-			"base": -4,
+			"base": null,
 			"attr": ["vol", "pre"],
 		},
 		"hypnosis": {
-			"base": -4,
+			"base": null,
 			"attr": ["vol", "pre"],
 		},
 		"controlPolarisEcho": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "vol"],
 		},
 		"controlPolarisEffect": {
-			"base": -4,
+			"base": null,
 			"attr": ["vol", "vol"],
 		},
-		"Meditation ": {
-			"base": -4,
+		"Meditation": {
+			"base": null,
 			"attr": ["vol", "vol"],
 		},
 		"polarisPower": {
-			"base": -4,
+			"base": null,
 			"attr": ["int", "vol"],
 		},
 	}

@@ -186,6 +186,23 @@ function translate(type, value){
 	return value;
 }
 
+function updateRelation(careerIdArg) {
+	let careerId = careerIdArg
+	if (!careerId) {
+		let careerSelect = $("#archetype-select");
+		if (careerSelect[0].selectedIndex >= 0){
+			careerId = careerSelect[0].options[careerSelect[0].selectedIndex].id.split("-")[0];
+		}
+	}
+
+	let currentCareer = career[careerId];
+	let year = $("#year-experience-field").val();	
+	$("#contact-field").val(Math.floor(currentCareer.contact * year));
+	$("#allySupplier-field").val(Math.floor(currentCareer.allySupplier * year));
+	$("#rival-field").val(Math.floor(currentCareer.rival * year));
+	$("#enemies-field").val(Math.floor(currentCareer.enemies * year));
+}
+
 function setCareer(careerId){
 	let cmpChoiseHolder = $("#carrer-competence-choice");
 	cmpChoiseHolder.empty();
@@ -201,7 +218,7 @@ function setCareer(careerId){
 		}
 		cmpChoiseHolder.append(compRow);
 	}
-	
+	updateRelation(careerId);
 	refreshCmpPoint();
 }
 
@@ -214,6 +231,7 @@ $(function(){
 	$("#year-experience-field").change(function(){
 		refreshLeftPc();
 		refreshCmpPoint();
+		updateRelation(null);
 	});
 	$(".attr").change(function(){
 		refreshRemainingAp();
@@ -282,7 +300,6 @@ $(function(){
 		careerSelect.append('<option id="'+careerId+'-select-field">'+localeName+'</option>');
 	}
 	careerSelect.on("change", function(){
-		console.log($(this));
 		if (careerSelect[0].selectedIndex >= 0){
 			let carrerId = careerSelect[0].options[careerSelect[0].selectedIndex].id.split("-")[0];
 			setCareer(carrerId);

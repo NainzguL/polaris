@@ -1,3 +1,4 @@
+"use strict";
 const tables = {
 	attributes: [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 17, 20],
 	attributesToBase: [-4, -4, -4, -4, -3, -2, -1, -1, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6],
@@ -112,11 +113,57 @@ function getCmpPointCost(curentMastery, wantedMastery, careerCmp) {
 	return total;
 }
 
+/**
+ * @returns the selecte carrer id, can return undeundefined
+ */
+function getSelectedCarrerId() {
+	let careerSelect = document.getElementById("archetype-select");
+	let careerOption = careerSelect.selectedIndex >= 0 ? careerSelect.options[careerSelect.selectedIndex] : null;
+	let careerId = careerOption ? careerOption.id.split("-")[0] : null;
+	return careerId;
+}
+
+function isCarrerCmp(careerId, compId) {
+	if (!careerId) {
+		return false;
+	}
+	let cmpArray = career[careerId].competence;
+	if (cmpArray.includes(compId)) { 
+		return true
+	}
+	let bitchyCompetence = career[careerId].bitchyCompetence
+	for (let i = 0; i < bitchyCompetence.length; i++) {
+		if (bitchyCompetence[i] === "natOriginNation") {
+			//TODO find orgine nation comp
+			if ("natEquinoxe" === compId) {
+				return true;
+			}
+		}
+		else {
+			console.error("Unknow how to interpret this bitchy competence: " + bitchyCompetence[i])
+		}
+	}
+	let cmpChoice = $(".carrer-cmp-choice");
+	for (let i = 0; i < cmpChoice.length; i++) {
+		if (cmpChoice[0].checked &&  cmpChoice[0].value === compId) {
+			return true;
+		}
+	}
+	
+	return false;
+}
+
 function refreshCmpPoint() {
-	let avialable = parseInt($("#year-experience-field").val()) * 20;
-	let totalSpended = $(".cmp-mastery").map(function(){return getCmpPointCost(parseInt($(this).attr("min")), parseInt($(this).val()), true);})
+	let careerId = getSelectedCarrerId();
+	let cumputeCmpPoint = function(){
+		let compId = $(this).attr('id').split("-")[0];
+		let carrerCmp = isCarrerCmp(careerId, compId);
+		return getCmpPointCost(parseInt($(this).attr("min")), parseInt($(this).val()), carrerCmp);
+	};
+	let totalSpended = $(".cmp-mastery").map(cumputeCmpPoint)
 									  .toArray()
 									  .reduce(function(accumulate, val) { return accumulate + val;});
+	let avialable = parseInt($("#year-experience-field").val()) * 20;
 	$("#competence-point-field").val(avialable - totalSpended);
 }
 
@@ -130,11 +177,32 @@ function refreshCompetences() {
 	$(".cmp-total").map(function(){ refreshOneCompetence($(this)); });
 }
 
-function translate(value){
-	if(locale[value]){
-		return locale[value]; 
+function translate(type, value){
+	if (locale[type]) {
+		if(locale[type][value]){
+			return locale[type][value]; 
+		}
 	}
 	return value;
+}
+
+function setCareer(careerId){
+	let cmpChoiseHolder = $("#carrer-competence-choice");
+	cmpChoiseHolder.empty();
+	
+	let competenceChoice = career[careerId].competenceChoice
+	for (let i = 0; i < competenceChoice.length; i++) {
+		let compRow = document.createElement("div");
+		compRow.classList.add("form-row");
+		$(compRow).append('<div class=col-auto">Choissez '+competenceChoice[i].number+' compétences parmis: </div>');
+		let compArray = competenceChoice[i].competence
+		for (let i = 0; i < compArray.length; i++) {
+			$(compRow).append('<div class="col-auto"><label><input type="checkbox" onclick="refreshCmpPoint()" class="carrer-cmp-choice" value="'+compArray[i]+'">'+translate("competence",compArray[i])+'</label></div>');
+		}
+		cmpChoiseHolder.append(compRow);
+	}
+	
+	refreshCmpPoint();
 }
 
 $(function(){
@@ -175,7 +243,7 @@ $(function(){
 			if(category[compName].base !== null){
 				if(categoryHidden){
 					//First row of the category
-					$("#compTable").append('<tr class="table-primary"><td colspan="5" class="compHeader">' + locale[categoryName] + '</td></tr>');
+					$("#compTable").append('<tr class="table-primary"><td colspan="5" class="compHeader">' + translate("competence",categoryName) + '</td></tr>');
 					categoryHidden = false;
 				}
 
@@ -199,7 +267,7 @@ $(function(){
 				}
 				$(this).val(sum);
 
-				$(compRow).append('<td>' + translate(compName) + specificity + '</td>')
+				$(compRow).append('<td>' + translate("competence",compName) + specificity + '</td>')
 				$(compRow).append('<td class="compAttr">' + category[compName].attr[0] + '/' + category[compName].attr[1] + '</td>');
 				$(compRow).append('<td><input type="number" class="form-control cmp-base"    id="' + compName + '-base-field"    value="' + baseValue + '" readonly="readonly" /></td>');
 				$(compRow).append('<td><input type="number" class="form-control cmp-mastery" id="' + compName + '-mastery-field" value="' + category[compName].base + '" min="' + category[compName].base + '" /></td>');
@@ -207,6 +275,22 @@ $(function(){
 				$("#compTable").append(compRow);
 			}
 		}
+	}
+	let careerSelect = $("#archetype-select");
+	for (let careerId in career) {
+		let localeName = translate("career", careerId);
+		careerSelect.append('<option id="'+careerId+'-select-field">'+localeName+'</option>');
+	}
+	careerSelect.on("change", function(){
+		console.log($(this));
+		if (careerSelect[0].selectedIndex >= 0){
+			let carrerId = careerSelect[0].options[careerSelect[0].selectedIndex].id.split("-")[0];
+			setCareer(carrerId);
+		}
+	});
+	if (careerSelect[0].selectedIndex >= 0){
+		let carrerId = careerSelect[0].options[careerSelect[0].selectedIndex].id.split("-")[0];
+		setCareer(carrerId);
 	}
 	$(".cmp-mastery").on("change", function(){
 		let cmpId = $(this).attr('id').split("-")[0];

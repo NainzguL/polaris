@@ -203,10 +203,26 @@ function updateRelation(careerIdArg) {
 	$("#enemies-field").val(Math.floor(currentCareer.enemies * year));
 }
 
+function upadateBusinessAdvantagePoint() {
+	let yearXp = parseInt($("#year-experience-field").val());
+	$("#business-advantage-point-field").val(yearXp * 5);
+}
+
+function validateBusinessAdvantagePoint() {
+	let max = parseInt($("#business-advantage-point-field").val());
+	let totalSpended = $(".businessAdvantage-field").map(function(val) {return parseInt($(this).val())})
+									  .toArray()
+									  .reduce(function(accumulate, val) { return accumulate + val;});
+	if (totalSpended > max) {
+		$("#business-advantage-point-field").addClass("is-invalid");
+	} else {
+		$("#business-advantage-point-field").removeClass("is-invalid");
+	}
+}
+
 function setCareer(careerId){
 	let cmpChoiseHolder = $("#carrer-competence-choice");
 	cmpChoiseHolder.empty();
-	
 	let competenceChoice = career[careerId].competenceChoice
 	for (let i = 0; i < competenceChoice.length; i++) {
 		let compRow = document.createElement("div");
@@ -218,6 +234,19 @@ function setCareer(careerId){
 		}
 		cmpChoiseHolder.append(compRow);
 	}
+	
+	let businessAdvantageHolder = $("#business-advantage-holder");
+	businessAdvantageHolder.empty();
+	let businessAdvantage = career[careerId].businessAdvantage;
+	for (let i = 0; i < businessAdvantage.length; i++) {
+		let compRow = document.createElement("div");
+		compRow.classList.add("form-row");
+		$(compRow).append('<div class=col-auto"><label>'+translate("businessAdvantage",businessAdvantage[i])+': '
+				+'<input type="number" id="'+businessAdvantage[i]+'-businessAdvantage-field" value="0" min="0" class="form-control businessAdvantage-field" onchange="validateBusinessAdvantagePoint()"/>'
+				+'</label></div>');
+		businessAdvantageHolder.append(compRow);
+	}
+	
 	updateRelation(careerId);
 	refreshCmpPoint();
 }
@@ -232,6 +261,8 @@ $(function(){
 		refreshLeftPc();
 		refreshCmpPoint();
 		updateRelation(null);
+		upadateBusinessAdvantagePoint();
+		validateBusinessAdvantagePoint();
 	});
 	$(".attr").change(function(){
 		refreshRemainingAp();

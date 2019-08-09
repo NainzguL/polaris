@@ -13,7 +13,7 @@
 					<label>Nom:<input type="text" name="name" placeholder="Nom du personnage" class="form-control" /></label>
 				</div>
 				<div class="col-auto">
-					<label>PC:<input type="number" name="pc" value="20" readonly="readonly" id="left-pc" class="form-control" /></label>
+					<label>PC:<input type="number" name="pc" value="20" min="0" readonly="readonly" id="left-pc" class="form-control" /></label>
 				</div>
 			</div>
 			<div class="form-row">
@@ -35,7 +35,7 @@
 			<h1>Attributs</h1>
 			<div class="form-row">
 				<div class="col-auto">
-					<label>PA : <input type="number" name="pa" value="38" readonly="readonly" id="attribute-points" class="form-control"/></label>
+					<label>PA : <input type="number" name="pa" value="38" min="0" readonly="readonly" id="attribute-points" class="form-control"/></label>
 				</div>
 				<div class="col-auto">
 					<label>PC alloués : <input type="number" id="pc-to-pa" value="0" min="0" max="20" class="form-control" /></label>

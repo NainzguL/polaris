@@ -12,6 +12,7 @@ function refreshRemainingAp() {
 	}
 	let attPts = 38 + $("#pc-to-pa").val() * 2;
 	$("#attribute-points").val(attPts - sum);
+	validateNumField($("#attribute-points"));
 }
 
 function refreshOneCompetence(cmp) {
@@ -165,12 +166,14 @@ function refreshCmpPoint() {
 									  .reduce(function(accumulate, val) { return accumulate + val;});
 	let avialable = parseInt($("#year-experience-field").val()) * 20;
 	$("#competence-point-field").val(avialable - totalSpended);
+	validateNumField($("#competence-point-field"));
 }
 
 function refreshLeftPc() {
 	var pcForPa = $("#pc-to-pa").val();
 	var pcForCmp = $("#year-experience-field").val();
 	$("#left-pc").val(20 - pcForPa - pcForCmp);
+	validateNumField($("#left-pc"));
 }
 
 function refreshCompetences() {
@@ -251,9 +254,35 @@ function setCareer(careerId){
 	refreshCmpPoint();
 }
 
+function validateNumField(field){
+	let nVal = field.val();
+	if (typeof nVal === typeof undefined && nVal === false) {
+		return;
+	}
+	let n = parseInt(nVal);
+	let minAttr = field.attr("min");
+	if (typeof minAttr !== typeof undefined && minAttr !== false) {
+	    let min = parseInt(minAttr);
+	    if (n < min) {
+	    	field.addClass("is-invalid");
+			return;
+	    }
+	}
+	let maxAttr = field.attr("max");
+	if (typeof maxAttr !== typeof undefined && maxAttr !== false) {
+		let max = parseInt(maxAttr);
+		if (n > max) {
+			field.addClass("is-invalid");
+			return;
+		}
+	}
+	field.removeClass("is-invalid");
+};
+
 $(function(){
 	$("#pc-to-pa").change(function(){
 		$("#attribute-points").val($("#attribute-points").val() + 2 * $(this).val());
+		validateNumField($("#attribute-points"));
 		refreshLeftPc();
 		refreshRemainingAp();
 	});
@@ -273,17 +302,6 @@ $(function(){
 		$('#' + attrId + '-apt-nat').val(tables["attributesToBase"][$(this).val()]);
 	});
 	
-	//This one seems useless
-	$(":input[type=number]").on("change", function(){
-		let min = parseInt($(this).attr("min"));
-		let max = parseInt($(this).attr("max"));
-		let n = parseInt($(this).val());
-		if ((n < min) || (n > max)) {
-			$(this).addClass("is-invalid");
-		} else {
-			$(this).removeClass("is-invalid");
-		}
-	});
 	for(let categoryName in comps){
 		let category = comps[categoryName];
 		let categoryHidden = true;
@@ -345,6 +363,6 @@ $(function(){
 		refreshOneCompetence($("#".concat(cmpId).concat("-total-field")));
 		refreshCmpPoint();
 	});
-
+	
 	refreshCompetences();
 });

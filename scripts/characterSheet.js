@@ -144,9 +144,9 @@ function isCarrerCmp(careerId, compId) {
 			console.error("Unknow how to interpret this bitchy competence: " + bitchyCompetence[i])
 		}
 	}
-	let cmpChoice = $(".carrer-cmp-choice");
+	let cmpChoice = $(".carrer-cmp-choice-option");
 	for (let i = 0; i < cmpChoice.length; i++) {
-		if (cmpChoice[0].checked &&  cmpChoice[0].value === compId) {
+		if (cmpChoice[i].selected &&  cmpChoice[i].value === compId) {
 			return true;
 		}
 	}
@@ -226,16 +226,33 @@ function validateBusinessAdvantagePoint() {
 function setCareer(careerId){
 	let cmpChoiseHolder = $("#carrer-competence-choice");
 	cmpChoiseHolder.empty();
-	let competenceChoice = career[careerId].competenceChoice
+	let competenceChoice = career[careerId].competenceChoice;
 	for (let i = 0; i < competenceChoice.length; i++) {
 		let compRow = document.createElement("div");
 		compRow.classList.add("form-row");
-		$(compRow).append('<div class=col-auto">Choissez '+competenceChoice[i].number+' compétences parmis: </div>');
+		let compCol = document.createElement("div");
+		compCol.classList.add("col-auto");
+		let label = document.createElement("label");
+		$(label).append('Choissez '+competenceChoice[i].number+' compétences: ');
+		let select = document.createElement("select");
+		select.classList.add("selectpicker");
+		select.classList.add("carrer-cmp-choice");
+		select.setAttribute("multiple", "multiple");
+		select.setAttribute("data-selected-text-format", "count");
+		select.setAttribute("data-max-options", competenceChoice[i].number);
+		select.setAttribute("onchange", "refreshCmpPoint()");
+		
 		let compArray = competenceChoice[i].competence
 		for (let i = 0; i < compArray.length; i++) {
-			$(compRow).append('<div class="col-auto"><label><input type="checkbox" onclick="refreshCmpPoint()" class="carrer-cmp-choice" value="'+compArray[i]+'">'+translate("competence",compArray[i])+'</label></div>');
+			$(select).append('<option value="'+compArray[i]+'" class="carrer-cmp-choice-option">'+translate("competence",compArray[i])+'</option>');
 		}
-		cmpChoiseHolder.append(compRow);
+
+		label.appendChild(select);
+		compCol.appendChild(label);
+		compRow.appendChild(compCol);
+		cmpChoiseHolder[0].appendChild(compRow);
+		
+		$(select).selectpicker('refresh');
 	}
 	
 	let businessAdvantageHolder = $("#business-advantage-holder");
@@ -358,6 +375,7 @@ $(function(){
 		let carrerId = careerSelect[0].options[careerSelect[0].selectedIndex].id.split("-")[0];
 		setCareer(carrerId);
 	}
+	$(careerSelect).selectpicker('refresh');
 	$(".cmp-mastery").on("change", function(){
 		let cmpId = $(this).attr('id').split("-")[0];
 		refreshOneCompetence($("#".concat(cmpId).concat("-total-field")));

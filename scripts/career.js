@@ -359,7 +359,103 @@ var career = {
 			}
 		],
 	},
-	//"espion": 
+	"spy": {
+		"id": "spy",
+		"condition": [{"type": "min3yearExp", "val": ["diplomat", "mercenary", "investigator", "soldier", "watchman"]}],
+		"competence": ["balance", "athletism", "climbing", "wrestling",
+		                "armedStruggle", "unarmedStruggle", "handguns", "longGuns",
+		                "psychology", "eloquence", "intimidation", "bureaucracy",
+		                "cryptography", "education", "seeking", "dissimulation",
+		                "disguise", "escape", "stealth", "discretion",
+		                "pickpocket", "observation", "orientation", "monitoring",
+		                "tampering", "computing", "hacking", "security","mentalShield" ],
+		"bitchyCompetence": ["natOriginNation"],
+		"competenceChoice": [{"number": 2, "competence": ["natHegemonie", "natRedLeague", "natCoralRepublic", 
+							"natEquinoxe","natMediterraneanUnion", "natPolarAlliance", 
+							"natRiftState", "natCapFederation", "natFuegoLibertad"
+							"natLemurie", "natRodhia", "natIndus"],
+		"progression": {
+			"1-6": 600,
+			"7-": 6000,
+		},
+		"contact": 1.,
+		"allySupplier": 0.33333333333333333,
+		"rival": 0.5, 
+		"enemies": 0.,
+		"businessAdvantage": ["corruptionBlackmail", "tampering", "falseIdentities", "hideout",
+							  "fame", "relationship", "equipement"],
+		"obtainableEquipmentGroup": ["standardEquipment", "contactWeapon", "handgun", 
+									 "spyingEquipment", "securityTools", "tamperingTools",],
+		"randomBusinessAdvantage": [
+			{
+				"id": "atrributUp",
+				"effects": [{"type": "attribut", "field": "ada", "val": 1}],
+			},
+			{
+				"id": "doubleAgent",
+				"effects": [
+					{"type": "roleplayElement", "field": "doubleAgent", "val": 1},
+				 ],
+			},
+			{
+				"id": "corruption",
+				"effects": [
+				   	{"type": "businessAdvantage", "field": "corruptionBlackmail", "val": 6},
+				 ],
+			},
+			{
+				"id": "exploit",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				   	{"type": "businessAdvantage", "field": "falseIdentities", "val": 4},
+				   	{"type": "businessAdvantage", "field": "tampering", "val": 4},
+				   	{"type": "businessAdvantage", "field": "corruptionBlackmail", "val": 4},
+				 ],
+			},
+			{
+				"id": "tampering",
+				"effects": [
+				   	{"type": "businessAdvantage", "field": "tampering", "val": 6},
+				 ],
+			},
+			{
+				"id": "falseIdentities",
+				"effects": [
+				   	{"type": "businessAdvantage", "field": "falseIdentities", "val": 6},
+				 ],
+			},
+			{
+				"id": "performance",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 1},
+				   	{"type": "businessAdvantage", "field": "falseIdentities", "val": 2},
+				   	{"type": "businessAdvantage", "field": "tampering", "val": 2},
+				   	{"type": "businessAdvantage", "field": "corruptionBlackmail", "val": 2},
+				 ],
+			},
+			{
+				"id": "network",
+				"effects": [
+				   	{"type": "businessAdvantage", "field": "relationship", "val": 6},
+				 ],
+			},
+			{
+				"id": "playerChoice",
+				"effects": [
+					{"type": "randomBusinessAdvantage", "field": "playerChoice", "val": 1},
+				 ],
+			}
+		],
+	},
+	//"soldat d'élite": 
+	//"investigator":
+	//"barman":  
+	//"contrebandier":
+	//"diplomat":
+	//"mercenary":
+	//"soldier":
+	//"watchman":
+	/*
 	"xxx": {
 		"id": "xxx",
 		"condition": [],
@@ -404,4 +500,5 @@ var career = {
 			}
 		],
 	},
+	*/
 };

@@ -447,13 +447,420 @@ var career = {
 			}
 		],
 	},
-	//"soldat d'élite": 
+	"eliteSoldierMarine": {
+		"id": "eliteSoldierMarine",
+		"condition": [{"type": "min3yearExp", "val": ["soldier"]},
+			{"type": "min15AttrIn2Of", "val": ["for", "con", "vol"]}, ],
+		"competence": ["athletism", "endurance", "closeSpecialWeapons", "armedStruggle",
+			           "unarmedStruggle", "handguns", "heavyGuns", "longGuns",
+			           "natMilitary", "commandoOperation", "dissimulation", "stealth",
+		               "observation", "orientation", "survival", "onboardInstrumentation",
+		               "explosive", "firstAid",
+		               "underwaterBattlesuits", "breathing", "closeHeavyWeapons", "vehicleDriving",
+		               "hunting", "knowOceans", "traps",],
+		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
+		"bitchyCompetence": ["natOriginNation"],
+		"progression": {
+			"1-2": 400,
+			"3-5": 800,
+			"6-7": 3000,
+			"8-": 6000,
+		},
+		"contact": 0.5,
+		"allySupplier": 0.25,
+		"rival": 0.1666666, 
+		"enemies": 0.,
+		"businessAdvantage": ["fame", "relationship", "equipement"],
+		"obtainableEquipmentGroup": ["standardEquipment", "contactWeapon", "handgun", 
+									 "standardProtections", "underwaterBattlesuits",],
+		"randomBusinessAdvantage": [
+			{
+				"id": "atrributUp",
+				"effects": [{"type": "attribut", "field": "vol", "val": 1}],
+			},
+			{
+				"id": "battle",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 2},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 1},
+				 ],
+			},
+			{
+				"id": "militaryAward",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 2},
+					{"type": "competencePoint", "field": "playerChoice", "val": 3},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 3},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 2},
+				 ],
+			},
+			{
+				"id": "hero",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 3},
+					{"type": "competencePoint", "field": "playerChoice", "val": 4},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 4},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 3},
+				 ],
+			},
+			{
+				"id": "elite",
+				"effects": [
+					{"type": "income", "field": "percentageIncreaseFromThisYear", "val": 100},
+					{"type": "competencePoint", "field": "playerChoice", "val": 6},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 6},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 4},
+				 ],
+			},
+			{
+				"id": "performance",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 1},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 1},
+				 ],
+			},
+			{
+				"id": "formation",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 ],
+			},
+			{
+				"id": "comradesInArms",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 1},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 ],
+			},
+			{
+				"id": "privateMilitia",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 4},
+				 ],
+			},
+			{
+				"id": "playerChoice",
+				"effects": [
+					{"type": "randomBusinessAdvantage", "field": "playerChoice", "val": 1},
+				 ],
+			}
+		],
+	},
+	"eliteSoldierUnderground": {
+		"id": "eliteSoldierUnderground",
+		"condition": [{"type": "min3yearExp", "val": ["soldier"]},
+			{"type": "min15AttrIn2Of", "val": ["for", "con", "vol"]}, ],
+			"competence": ["athletism", "endurance", "closeSpecialWeapons", "armedStruggle",
+		           "unarmedStruggle", "handguns", "heavyGuns", "longGuns",
+		           "natMilitary", "commandoOperation", "dissimulation", "stealth",
+	               "observation", "orientation", "survival", "onboardInstrumentation",
+	               "explosive", "firstAid",
+	               "climbing", "externalBattlesuits", "hunting", "vehicleDriving",
+	               "knowUnderground", "traps", ],
+		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
+		"bitchyCompetence": ["natOriginNation"],
+		"progression": {
+			"1-2": 500,
+			"3-5": 1200,
+			"6-7": 3600,
+			"8-": 7500,
+		},
+		"contact": 0.33333333,
+		"allySupplier": 0.2,
+		"rival": 0.1666666, 
+		"enemies": 0.,
+		"businessAdvantage": ["fame", "relationship", "equipement"],
+		"obtainableEquipmentGroup": ["standardEquipment", "contactWeapon", "handgun", 
+									 "standardProtections", "hybridBattlesuits",],
+		"randomBusinessAdvantage": [
+			{
+				"id": "atrributUp",
+				"effects": [{"type": "attribut", "field": "vol", "val": 1}],
+			},
+			{
+				"id": "battle",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 2},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 1},
+				 ],
+			},
+			{
+				"id": "militaryAward",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 2},
+					{"type": "competencePoint", "field": "playerChoice", "val": 3},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 3},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 2},
+				 ],
+			},
+			{
+				"id": "hero",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 3},
+					{"type": "competencePoint", "field": "playerChoice", "val": 4},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 4},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 3},
+				 ],
+			},
+			{
+				"id": "elite",
+				"effects": [
+					{"type": "income", "field": "percentageIncreaseFromThisYear", "val": 100},
+					{"type": "competencePoint", "field": "playerChoice", "val": 6},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 6},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 4},
+				 ],
+			},
+			{
+				"id": "performance",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 1},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 1},
+				 ],
+			},
+			{
+				"id": "formation",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 ],
+			},
+			{
+				"id": "comradesInArms",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 1},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 ],
+			},
+			{
+				"id": "privateMilitia",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 4},
+				 ],
+			},
+			{
+				"id": "playerChoice",
+				"effects": [
+					{"type": "randomBusinessAdvantage", "field": "playerChoice", "val": 1},
+				 ],
+			}
+		],
+	},
+	"eliteSoldierGround": {
+		"id": "eliteSoldierGround",
+		"condition": [{"type": "min3yearExp", "val": ["soldier"]},
+			{"type": "min15AttrIn2Of", "val": ["for", "con", "vol"]}, ],
+			"competence": ["athletism", "endurance", "closeSpecialWeapons", "armedStruggle",
+		           "unarmedStruggle", "handguns", "heavyGuns", "longGuns",
+		           "natMilitary", "commandoOperation", "dissimulation", "stealth",
+	               "observation", "orientation", "survival", "onboardInstrumentation",
+	               "explosive", "firstAid",
+	               "climbing", "sniper", "externalBattlesuits", "atmosphericBattlesuits",
+	               "vehicleDriving", "knowLand", "traps", ],
+		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
+		"bitchyCompetence": ["natOriginNation"],
+		"progression": {
+			"1-2": 500,
+			"3-5": 1200,
+			"6-7": 3600,
+			"8-": 7500,
+		},
+		"contact": 0.2,
+		"allySupplier": 0.1666666,
+		"rival": 0.1666666, 
+		"enemies": 0.,
+		"businessAdvantage": ["fame", "relationship", "equipement"],
+		"obtainableEquipmentGroup": ["standardEquipment", "contactWeapon", "handgun", 
+									 "standardProtections", "externalBattlesuits",],
+		"randomBusinessAdvantage": [
+			{
+				"id": "atrributUp",
+				"effects": [{"type": "attribut", "field": "vol", "val": 1}],
+			},
+			{
+				"id": "battle",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 2},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 1},
+				 ],
+			},
+			{
+				"id": "militaryAward",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 2},
+					{"type": "competencePoint", "field": "playerChoice", "val": 3},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 3},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 2},
+				 ],
+			},
+			{
+				"id": "hero",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 3},
+					{"type": "competencePoint", "field": "playerChoice", "val": 4},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 4},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 3},
+				 ],
+			},
+			{
+				"id": "elite",
+				"effects": [
+					{"type": "income", "field": "percentageIncreaseFromThisYear", "val": 100},
+					{"type": "competencePoint", "field": "playerChoice", "val": 6},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 6},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 4},
+				 ],
+			},
+			{
+				"id": "performance",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 1},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 1},
+				 ],
+			},
+			{
+				"id": "formation",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 ],
+			},
+			{
+				"id": "comradesInArms",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 1},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 ],
+			},
+			{
+				"id": "privateMilitia",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 4},
+				 ],
+			},
+			{
+				"id": "playerChoice",
+				"effects": [
+					{"type": "randomBusinessAdvantage", "field": "playerChoice", "val": 1},
+				 ],
+			}
+		],
+	},
+	"eliteSoldierspecial": {
+		"id": "eliteSoldierspecial",
+		"condition": [{"type": "min3yearExp", "val": ["soldier"]},
+			{"type": "min15AttrIn2Of", "val": ["for", "con", "vol"]}, ],
+			"competence": ["athletism", "endurance", "closeSpecialWeapons", "armedStruggle",
+		           "unarmedStruggle", "handguns", "heavyGuns", "longGuns",
+		           "natMilitary", "commandoOperation", "dissimulation", "stealth",
+	               "observation", "orientation", "survival", "onboardInstrumentation",
+	               "explosive", "firstAid",
+	               "sniper", "monitoring", "security", ],
+		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
+		"bitchyCompetence": ["natOriginNation"],
+		"progression": {
+			"1-2": 400,
+			"3-5": 800,
+			"6-7": 3000,
+			"8-": 6000,
+		},
+		"contact": 0.5,
+		"allySupplier": 0.25,
+		"rival": 0.1666666, 
+		"enemies": 0.,
+		"businessAdvantage": ["fame", "relationship", "equipement"],
+		"obtainableEquipmentGroup": ["standardEquipment", "contactWeapon", "handgun", 
+									 "standardProtections",],
+		"randomBusinessAdvantage": [
+			{
+				"id": "atrributUp",
+				"effects": [{"type": "attribut", "field": "vol", "val": 1}],
+			},
+			{
+				"id": "battle",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 2},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 1},
+				 ],
+			},
+			{
+				"id": "militaryAward",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 2},
+					{"type": "competencePoint", "field": "playerChoice", "val": 3},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 3},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 2},
+				 ],
+			},
+			{
+				"id": "hero",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 3},
+					{"type": "competencePoint", "field": "playerChoice", "val": 4},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 4},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 3},
+				 ],
+			},
+			{
+				"id": "elite",
+				"effects": [
+					{"type": "income", "field": "percentageIncreaseFromThisYear", "val": 100},
+					{"type": "competencePoint", "field": "playerChoice", "val": 6},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 6},
+				   	{"type": "businessAdvantage", "field": "equipement", "val": 4},
+				 ],
+			},
+			{
+				"id": "performance",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 1},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 1},
+				 ],
+			},
+			{
+				"id": "formation",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 ],
+			},
+			{
+				"id": "comradesInArms",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 1},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 ],
+			},
+			{
+				"id": "privateMilitia",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 4},
+				 ],
+			},
+			{
+				"id": "playerChoice",
+				"effects": [
+					{"type": "randomBusinessAdvantage", "field": "playerChoice", "val": 1},
+				 ],
+			}
+		],
+	},
 	//"investigator":
+	//"contrebandier":
+	//"soldier":
 	//"barman":  
 	//"contrebandier":
 	//"diplomat":
 	//"mercenary":
-	//"soldier":
 	//"watchman":
 	/*
 	"xxx": {

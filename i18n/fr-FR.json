@@ -10,6 +10,7 @@ var locale = {
 		"survivalCat" : "Survie/Extérieur",
 		"techniques" : "Techniques",
 		"specialCat" : "Compétences spéciales",
+		"forCarrer": "Autres",
 
 		"balance" : "Acrobatie/Équilibre",
 		"athletism": "Athlétisme",
@@ -161,6 +162,8 @@ var locale = {
 		"controlPolarisEffect": "Maîtrise de l’Effet Polaris",
 		"Meditation": "Méditation",
 		"polarisPower": "Pouvoirs liés à l’Effet Polaris",
+		"natOriginNation": "Connaissance des nations/organisations [communauté  d’origine]",
+		"natHostNation": "Connaissance des nations/organisations [communauté  d’accueil]",
 	},
 	"attribut": {
 		"for": "Force",

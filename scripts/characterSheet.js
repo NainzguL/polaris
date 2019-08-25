@@ -180,15 +180,6 @@ function refreshCompetences() {
 	$(".cmp-total").map(function(){ refreshOneCompetence($(this)); });
 }
 
-function translate(type, value){
-	if (locale[type]) {
-		if(locale[type][value]){
-			return locale[type][value]; 
-		}
-	}
-	return value;
-}
-
 function updateRelation(careerIdArg) {
 	let careerId = careerIdArg
 	if (!careerId) {

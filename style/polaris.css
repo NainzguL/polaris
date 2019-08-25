@@ -15,3 +15,38 @@ form {
 #compTable {
 	margin: auto;
 }
+
+
+/*
+.big-select {
+  position: relative;
+}
+
+.big-select-left {
+	width: 50%;
+	height: auto;
+  	position: absolute;
+  	top: 2px;
+	right: 2px;
+	padding-left: 48px;
+}
+
+.big-select-middle {
+	width: auto;
+	height: auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.big-select-right {
+	width: 50%;
+	height: auto;
+	float: right;
+  	position: absolute;
+  	top: 2px;
+	left: 2px;
+	padding-right: 48px;
+}
+*/

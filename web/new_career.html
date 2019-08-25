@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Nouvelle carrière</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../lib/transfer/css/jquery.transfer.css">
+		<link rel="stylesheet" href="../style/polaris.css">
+	</head>
+	<body>
+	
+		<form>
+		
+			<h1>Nouvelle carrière</h1>
+					
+			<div class="form-row">
+				<div class="col-auto">
+					<label>Nom:<input type="text" class="form-control" /></label>
+				</div>
+			</div>
+			 
+			 <div class="accordion" id="condition-accordion">
+				<div class="card">
+					<div class="card-header collapse-header-with-chevron" id="condition-header">
+						<!-- <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#condition-collapse" aria-expanded="false" aria-controls="condition-collapse"> -->
+						<a data-toggle="collapse" data-target="#condition-collapse" aria-expanded="false" aria-controls="condition-collapse" href="#condition-collapse">
+		       				<i class="fa fa-chevron-right"></i> Condition
+		       			</a>
+					</div>
+					
+					<div id="condition-collapse" class="collapse" aria-labelledby="condition-header" data-parent="#condition-accordion">
+	      				<div class="card-body">
+							<div class="form-row">
+								<div class="col-auto">
+									<label><input type="checkbox" /> Experience dans une carrier</label>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-auto">
+									<label>Année:<input type="number" value="0" min="0" max="20" class="form-control" /></label>
+								</div>
+								<div class="col-auto">
+									<label>Carrier:<select class="form-control selectpicker"  data-live-search="true">
+				 					</select></label>
+								</div>
+							</div>
+							
+							<div class="form-row">
+								<div class="col-auto">
+									<label><input type="checkbox" /> Backgroud particulier</label>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-auto">
+									<label>Backgroud:<select class="form-control selectpicker" data-live-search="true">
+				 					</select></label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<h5>Compétence</h5>
+			
+			<div class="transfer"></div>
+			
+			<!-- 
+			<div class="big-select">
+				<div class="big-select-left">
+					<h5>Disponible</h5>
+					<input type="text" class="form-control big-select-filter" placeholder="filter" />
+					<div class="list-group">
+						<a class="list-group-item list-group-item-action">cmp 1</a>
+						<a class="list-group-item list-group-item-action">cmp 2</a>
+						<a class="list-group-item list-group-item-action">cmp 3</a>
+					</div>
+				</div>
+				<div class="big-select-middle">
+					<button type="button" class="btn btn-light big-select-btn-right"><i class="fa fa-chevron-right"></i></button>
+					<button type="button" class="btn btn-light big-select-btn-left"><i class="fa fa-chevron-left"></i></button>
+				</div>
+				<div class="big-select-right">
+					<h5>Sélectioné</h5>
+					<input type="text" class="form-control big-select-filter" placeholder="filter" />
+					<div class="list-group">
+						<a class="list-group-item list-group-item-action">cmp 4</a>
+						<a class="list-group-item list-group-item-action">cmp 5</a>
+					</div>
+				</div>
+			</div>
+			 -->
+			 
+		</form>
+		
+	</body>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+	<script type="text/javascript" language="javascript" src="../lib/transfer/js/jquery.transfer.js"></script> 
+	<script type="text/javascript" language="javascript" src="../scripts/uiCommon.js"></script> 
+	<script type="text/javascript" language="javascript" src="../i18n/fr-FR.json"></script> 
+	<script type="text/javascript" language="javascript" src="../scripts/comp.json"></script> 
+	<script type="text/javascript" language="javascript" src="../scripts/career.json"></script> 
+	<script type="text/javascript" language="javascript" src="../scripts/new_career.js"></script> 
+</html>

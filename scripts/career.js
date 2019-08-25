@@ -49,6 +49,22 @@ function addCondition(career, type, valsArg) {
 	career.condition.push(elt);
 }
 
+/**
+ * This function add a choice of competence to the career. 
+ * The duplicate competence (there are in career.competence and in cmpArray) will be remove from career competence array (the array career.competence)
+ */
+function addCmpChoice(careerArg, num, cmpArray) {
+	let elt = {"number": parseInt(num), "competence": cmpArray.slice()}
+	careerArg.competenceChoice.push(elt);
+	let i = careerArg.competence.length - 1;
+	while (i >= 0) {
+	    if (cmpArray.includes(careerArg.competence[i])) { 
+	    	careerArg.competence.splice(i, 1);
+	    } 
+	    i--;
+	}
+}
+
 var career = {
 	"artistCraftMan": {
 		"condition": [],

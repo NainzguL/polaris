@@ -13,17 +13,23 @@
 		<form>
 		
 			<h1>Nouvelle carrière</h1>
+			
+			
+			<div class="form-row">
+				<div class="col-auto">
+					<button type="button" class="btn btn-light" onclick="exportJson()">Exporter</button>
+				</div>
+			</div>
 					
 			<div class="form-row">
 				<div class="col-auto">
-					<label>Nom:<input type="text" class="form-control" /></label>
+					<label>Nom:<input id="name-input" type="text" class="form-control" /></label>
 				</div>
 			</div>
 			 
 			 <div class="accordion" id="condition-accordion">
 				<div class="card">
 					<div class="card-header collapse-header-with-chevron" id="condition-header">
-						<!-- <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#condition-collapse" aria-expanded="false" aria-controls="condition-collapse"> -->
 						<a data-toggle="collapse" data-target="#condition-collapse" aria-expanded="false" aria-controls="condition-collapse" href="#condition-collapse">
 		       				<i class="fa fa-chevron-right"></i> Condition
 		       			</a>
@@ -33,27 +39,27 @@
 	      				<div class="card-body">
 							<div class="form-row">
 								<div class="col-auto">
-									<label><input type="checkbox" /> Experience dans une carrier</label>
+									<label><input id="condition-exp-check" class="form-check-input" type="checkbox" /> Experience dans une carrier</label>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="col-auto">
-									<label>Année:<input type="number" value="0" min="0" max="20" class="form-control" /></label>
+									<label>Année:<input id="condition-exp-year-input" type="number" value="1" min="1" max="20" class="form-control" disabled/></label>
 								</div>
 								<div class="col-auto">
-									<label>Carrier:<select class="form-control selectpicker"  data-live-search="true">
+									<label>Carrier:<select id="condition-exp-career-select" class="form-control selectpicker" data-live-search="true" data-container="body" multiple="multiple" disabled>
 				 					</select></label>
 								</div>
 							</div>
 							
 							<div class="form-row">
 								<div class="col-auto">
-									<label><input type="checkbox" /> Backgroud particulier</label>
+									<label><input id="condition-studies-check" class="form-check-input" type="checkbox" /> Etudes particulieres</label>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="col-auto">
-									<label>Backgroud:<select class="form-control selectpicker" data-live-search="true">
+									<label>Etudes:<select id="condition-studies-type-select" class="form-control selectpicker" data-container="body" disabled>
 				 					</select></label>
 								</div>
 							</div>
@@ -103,6 +109,6 @@
 	<script type="text/javascript" language="javascript" src="../scripts/uiCommon.js"></script> 
 	<script type="text/javascript" language="javascript" src="../i18n/fr-FR.json"></script> 
 	<script type="text/javascript" language="javascript" src="../scripts/comp.json"></script> 
-	<script type="text/javascript" language="javascript" src="../scripts/career.json"></script> 
+	<script type="text/javascript" language="javascript" src="../scripts/career.js"></script> 
 	<script type="text/javascript" language="javascript" src="../scripts/new_career.js"></script> 
 </html>

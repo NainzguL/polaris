@@ -1,3 +1,54 @@
+
+var forCareerComps = [
+	"natOriginNation",
+	"natHostNation",
+];
+
+var CONDITION_TYPE_GRADUATE_STUDIES = "graduateStudies";
+
+function getConditionTypeMinXYearXp(numOfYear) {
+	return "min"+numOfYear+"yearExp";
+}
+
+function isConditionTypeMinXYearXp(conditionType) {
+	return conditionType.startsWith("min") && conditionType.endsWith("yearExp");
+}
+
+function removeConditionMinXYearXp(careerArg) {
+	let i = careerArg.condition.length - 1;
+	while (i >= 0) {
+	    if (isConditionTypeMinXYearXp(careerArg.condition[i].type)) { 
+	    	careerArg.condition.splice(i, 1);
+	    } 
+	    i--;
+	}
+}
+
+function removeConditionByType(careerArg, conditionType) {
+	let i = careerArg.condition.length - 1;
+	while (i >= 0) {
+	    if (careerArg.condition[i].type === conditionType) { 
+	    	careerArg.condition.splice(i, 1);
+	    } 
+	    i--;
+	}
+}
+
+function addCondition(career, type, valsArg) {
+	let elt = {"type": type, "val": []};
+	if (Array.isArray(valsArg)) {
+		elt.val = valsArg.slice();
+	}
+	else if (typeof(valsArg) === "string") {
+		elt.val = [valsArg];
+	}
+	else {
+		console.error("invalide value for valsArg:")
+		console.error(valsArg)
+	}
+	career.condition.push(elt);
+}
+
 var career = {
 	"artistCraftMan": {
 		"condition": [],
@@ -102,7 +153,7 @@ var career = {
 		],
 	},
 	"scholar": {
-		"condition": [{"type": "graduateStudies", "val": "science"}],
+		"condition": [{"type": CONDITION_TYPE_GRADUATE_STUDIES, "val": ["science"]}],
 		"competence": ["eloquence", "cryptography", "seeking", "onboardInstrumentation",
 		                "computing", "mentalShield", "Meditation", ],
 		"bitchyCompetence": ["natOriginNation"],

@@ -48,7 +48,6 @@ function validateAndSaveCareer(changeDisabled) {
 			careerSelect.selectpicker('refresh');
 		}
 		let selected = careerSelect.val();
-		console.log(selected);
 		if (selected.length > 0) {
 			addCondition(curentCareer, getConditionTypeMinXYearXp(parseInt(yearOfXp.val())), selected);
 		}
@@ -84,74 +83,40 @@ function validateAndSaveStudies(changeDisabled) {
 	}
 }
 
-function doTransfer() {
-	let items = [{
-		"language": translate("competence", "natOriginNation"),
-	    "value": "natOriginNation",
-	},
-	{
-		"language": translate("competence", "natHostNation"),
-	    "value": "natHostNation",
-	}];
+function htmlForCompSelect(categoryId, category) {
+	let htmlCode = '<div class="form-row">'
+		+ '<div class="col-auto">'
+		+ '<label>'
+		+ translate("competence", categoryId) + ": "
+		+ '<select class="form-control selectpicker" data-live-search="true" data-container="body" multiple="multiple" data-selected-text-format="count > 4">';
 	
-	let groupData = [];
-	for(let categoryName in comps){
-		let category = comps[categoryName];
-		let group = {
-				"groupName": translate("competence",categoryName),
-		        "groupData": [],
-		};
-		for(let compName in category) {
-			let newElt = {
-					"language": translate("competence", compName),
-				    "value": compName,
-			}
-			group.groupData.push(newElt);
-			items.push(newElt);
-		}
-		groupData.push(group);
-	}
+	for(let compId in category) {
+		htmlCode = htmlCode + '<option value="'+compId+'">' + translate("competence", compId) + '</option>';
+	} 
 	
-	let otherGroup = {
-		"groupName": translate("competence","forCarrer"),
-        "groupData": [],
-	};
-	for (let i = 0; i < forCareerComps.length; i++) {
-		let compName = forCareerComps[i];
-		let newElt = {
-				"language": translate("competence", compName),
-			    "value": compName,
-		}
-		otherGroup.groupData.push(newElt);
-		items.push(newElt);
-	}
-	groupData.push(otherGroup);
-	
-	let settings = {
-	        "inputId": "languageInput",
-	        "data": items,
-	        "groupData": groupData,
-	        "itemName": "language",
-	        "groupItemName": "groupName",
-	        "groupListName" : "groupData",
-	        "container": "transfer",
-	        "valueName": "value",
-	        "callable" : function (data, names) {
-	        	//TODO
-	            console.log("Selected ID：" + data)
-	            $("#selectedItemSpan").text(names)
-	        }
-	    };
-	
-	Transfer.transfer(settings);
+	htmlCode = htmlCode + '</select>'
+		+ '</label>'
+		+ '</div>'
+		+ '</div>';
+	return htmlCode;
 }
 
-doTransfer();
-fillCareerAndStudies(career,{"etude1": "1", "etude2": "2", "etude3": "3"});
+function fillComptence(comps, forCareerComps) {
+	
+	let toFill = $("#competence-palceholder");
 
-$("#name-input").change(function(){
-	curentCareer.id = $(this).val();
-});
+	for(let categoryId in comps){
+		let category = comps[categoryId];
+		toFill.append(htmlForCompSelect(categoryId, category));
+	}
+
+	toFill.append(htmlForCompSelect("forCarrer", forCareerComps));
+}
+
+fillCareerAndStudies(career,{"etude1": "1", "etude2": "2", "etude3": "3"});
+fillComptence(comps, forCareerComps);
+
+$("#name-input").change(function(){ curentCareer.id = $(this).val(); });
 $("#condition-exp-check").change(function(){ validateAndSaveCareer(true); });
 $("#condition-exp-year-input").change(function(){ validateAndSaveCareer(false); });
 $("#condition-exp-career-select").change(function(){ validateAndSaveCareer(true); });

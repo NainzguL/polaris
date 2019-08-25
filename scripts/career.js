@@ -1,8 +1,8 @@
 
-var forCareerComps = [
-	"natOriginNation",
-	"natHostNation",
-];
+var forCareerComps = {
+	"natOriginNation": {},
+	"natHostNation": {},
+};
 
 var CONDITION_TYPE_GRADUATE_STUDIES = "graduateStudies";
 

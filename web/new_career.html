@@ -13,10 +13,13 @@
 		
 			<h1>Nouvelle carrière</h1>
 			
-			
 			<div class="form-row">
 				<div class="col-auto">
 					<button type="button" class="btn btn-primary" onclick="exportJson()">Exporter</button>
+				</div>
+				<div class="col-auto">
+					<button type="button" class="btn btn-primary" onclick="openSelectFile()">Charger</button>
+					<input type="file" id="hiden-file-input" style="display: none;">
 				</div>
 			</div>
 					
@@ -31,7 +34,11 @@
 			
 			<div class="form-row">
 				<div class="col-auto">
-					<label><input id="condition-exp-check" class="form-check-input" type="checkbox" /> Experience dans une carrier</label>
+					<div class="form-check">
+						<label class="form-check-label">
+						<input id="condition-exp-check" class="form-check-input" type="checkbox" />
+						Experience dans une carrier</label>
+					</div>
 				</div>
 			</div>
 			<div class="form-row">
@@ -46,7 +53,11 @@
 			
 			<div class="form-row">
 				<div class="col-auto">
-					<label><input id="condition-studies-check" class="form-check-input" type="checkbox" /> Etudes particulieres</label>
+					<div class="form-check">
+					<label class="form-check-label">
+					<input id="condition-studies-check" class="form-check-input" type="checkbox" />
+					Etudes particulieres</label>
+					</div>
 				</div>
 			</div>
 			<div class="form-row">

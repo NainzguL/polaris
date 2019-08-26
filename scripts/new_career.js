@@ -20,10 +20,94 @@ var curentCareer = {
 
 var competenceChoiceId = 0;
 
+function showLoadFailed() {
+	alert("Ereur: le fichier selectioné n'est pas valide");
+}
+
 function exportJson() {
 	let toExport = JSON.stringify(curentCareer);
 	download("myCareer.json", toExport)
 }
+
+/**
+ * Change the current career and refresh all UI element
+ */
+function setCurentCareer(newCareer) {
+	$("#name-input").val(newCareer.id);
+
+	for (let i = 0; i < newCareer.condition.length; i++) {
+		if (newCareer.condition[i].type === CONDITION_TYPE_GRADUATE_STUDIES) {
+			$("#condition-studies-check").prop('checked', true);
+			let studiesSelect = $("#condition-studies-type-select");
+			studiesSelect.attr("disabled", false);
+			studiesSelect.val(newCareer.condition[i].val[0]);
+			studiesSelect.selectpicker('refresh');
+		}
+		if (isConditionTypeMinXYearXp(newCareer.condition[i].type)) {
+			$("#condition-exp-check").prop('checked', true);
+			$("#condition-exp-year-input").val(getNumConditionTypeMinXYearXp(newCareer.condition[i].type));
+			let careerSelect = $("#condition-exp-career-select");
+			studiesSelect.selectpicker('val', newCareer.condition[i].val);
+			studiesSelect.selectpicker('refresh');
+		}
+	}
+
+	$(".competence-save").map(function(){
+		if ($(this)[0].tagName.toUpperCase() !== "SELECT") {
+			return;
+		}
+		$(this).selectpicker('val', newCareer.competence);
+		$(this).selectpicker('refresh');
+	});
+	
+	$(".bitchyCompetence-save").map(function(){
+		if ($(this)[0].tagName.toUpperCase() !== "SELECT") {
+			return;
+		}
+		$(this).selectpicker('val', newCareer.bitchyCompetence);
+		$(this).selectpicker('refresh');
+	});
+	
+
+	$("#competence-choice-palceholder").empty()
+	for (let i = 0; i < newCareer.competenceChoice.length; i++) {
+		addCmpChoiceUi(newCareer.competenceChoice[i].number, newCareer.competenceChoice[i].competence)
+	}
+	
+	
+	/*
+	$(".competenceChoice-div-save").map(function(){
+		let numMapArray = $(this).find(".competenceChoice-num-save").map(function(){ 
+			if ($(this)[0].tagName.toUpperCase() !== "SELECT") {
+				return 0;
+			}
+			return parseInt($(this).val());
+		});
+		let num = numMapArray.toArray().reduce(function(accumulate, val) { return accumulate + val;});
+		
+		let cmpMapArray = $(this).find(".competenceChoice-cmp-save");
+		let cmps = [];
+		for (let elt in cmpMapArray) {
+			if (cmpMapArray[elt].tagName.toUpperCase() === "SELECT") {
+				cmps = $(cmpMapArray[elt]).val();
+				break;
+			}
+		}
+		addCmpChoice(curentCareer, num, cmps);
+	});
+	*/
+
+	/*
+	$(".competenceChoice-div-save")
+	*/
+	
+	curentCareer = newCareer;
+}
+
+function openSelectFile() {
+	document.getElementById("hiden-file-input").click();
+}
+
 
 function fillCareerAndStudies(careers, backgrouds) {
 	let careerSelect = $("#condition-exp-career-select");
@@ -43,7 +127,7 @@ function validateAndSaveCareer(changeDisabled) {
 	let yearOfXp = $("#condition-exp-year-input");
 	let careerSelect = $("#condition-exp-career-select");
 	removeConditionMinXYearXp(curentCareer);
-	if ($("#condition-studies-check").is(':checked')) {
+	if ($("#condition-exp-check").is(':checked')) {
 		if (changeDisabled) {
 			yearOfXp.attr("disabled", false);
 			careerSelect.attr("disabled", false);
@@ -85,7 +169,7 @@ function validateAndSaveStudies(changeDisabled) {
 	}
 }
 
-function addCmpChoiceUi() {
+function addCmpChoiceUi(num, cmps) {
 	let uniqueNum = competenceChoiceId++;
 	let idDiv = "cmp-choice-div-"+uniqueNum;
 	let idSelctNum = "cmp-choice-num-select-"+uniqueNum;
@@ -116,6 +200,11 @@ function addCmpChoiceUi() {
 		+ '</div>';
 	
 	$("#competence-choice-palceholder").append(htmlCode);
+	
+	if (num !== undefined && cmps!== undefined && num > 0 && num < 9 && cmps.length > 0) {
+		$("#"+idSelctNum).selectpicker('val', "" + num);
+		$("#"+idSelctCmp).selectpicker('val', cmps);
+	}
 	
 	$("#"+idSelctNum).selectpicker('refresh');
 	$("#"+idSelctCmp).selectpicker('refresh');
@@ -202,14 +291,31 @@ function fillComptence(comps, forCareerComps) {
 	toFill.append(htmlForCompSelect("forCarrer", forCareerComps, "bitchyCompetence-save"));
 }
 
-fillCareerAndStudies(career,{"etude1": "1", "etude2": "2", "etude3": "3"});
+fillCareerAndStudies(career,{"etude1": "1", "etude2": "2", "etude3": "3", "science" : "Etude scientifique"});
 fillComptence(comps, forCareerComps);
+
+document.getElementById("hiden-file-input").onchange = (function (e) {
+	let file = e.target.files[0]; 
+	let reader = new FileReader();
+	reader.readAsText(file,'UTF-8');
+	reader.onload = readerEvent => {
+		let content = readerEvent.target.result;
+		try {
+			let jsonObj = JSON.parse(content);
+			let clone = cloneCareerJson(jsonObj);
+			setCurentCareer(clone);
+	    } catch (e) {
+	    	console.error(e);
+	    	showLoadFailed();
+	    }
+	}
+});
 
 $("#name-input").change(function(){ curentCareer.id = $(this).val(); });
 $("#condition-exp-check").change(function(){ validateAndSaveCareer(true); });
 $("#condition-exp-year-input").change(function(){ validateAndSaveCareer(false); });
-$("#condition-exp-career-select").change(function(){ validateAndSaveCareer(true); });
-$("#condition-studies-check").change(function(){validateAndSaveStudies(false); });
+$("#condition-exp-career-select").change(function(){ validateAndSaveCareer(false); });
+$("#condition-studies-check").change(function(){validateAndSaveStudies(true); });
 $("#condition-studies-type-select").change(function(){validateAndSaveStudies(false); });
 
 $(".competence-save").change(saveCompetance);

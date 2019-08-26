@@ -14,6 +14,10 @@ function isConditionTypeMinXYearXp(conditionType) {
 	return conditionType.startsWith("min") && conditionType.endsWith("yearExp");
 }
 
+function getNumConditionTypeMinXYearXp(conditionType) {
+	return parseint(conditionType.slice("min".length,conditionType.length - "yearExp".length));
+}
+
 function removeConditionMinXYearXp(careerArg) {
 	let i = careerArg.condition.length - 1;
 	while (i >= 0) {
@@ -65,8 +69,87 @@ function addCmpChoice(careerArg, num, cmpArray) {
 	}
 }
 
+
+function copyStringArry(strArray) {
+	let ret = [];
+	for (let i = 0; i < strArray.length; i++) {
+		ret.push(String(strArray[i]));
+	}
+	return ret;
+}
+
+function copyCondition(conditionsArray) {
+	let ret = [];
+	for (let i = 0; i < conditionsArray.length; i++) {
+		let elt = {"type": String(conditionsArray[i].type), 
+				"val": copyStringArry(conditionsArray[i].val),};
+		ret.push(elt);
+	}
+	return ret;
+}
+
+function copyCompetenceChoice(competenceChoiceArray) {
+	let ret = [];
+	for (let i = 0; i < competenceChoiceArray.length; i++) {
+		let elt = {"number": parseInt(competenceChoiceArray[i].number),
+				"competence": copyStringArry(competenceChoiceArray[i].competence)};
+		ret.push(elt);
+	}
+	return ret;
+}
+
+function copyProgression(progressionObj) {
+	let ret = {};
+	for (elt in progressionObj) {
+		ret[elt] = parseInt(progressionObj[elt]);
+	}
+	return ret;
+}
+
+
+function copyRandomBusinessAdvantage(randomBusinessAdvantageArray) {
+	let ret = [];
+	for (let i = 0; i < randomBusinessAdvantageArray.length; i++) {
+		let effectArray = [];
+		for (let j = 0; j < randomBusinessAdvantageArray[i].effects.length; j++) {
+			let newEffect = {"type": String(randomBusinessAdvantageArray[i].effects[j].type),
+					"field": String(randomBusinessAdvantageArray[i].effects[j].field),
+					"val": parseInt(randomBusinessAdvantageArray[i].effects[j].val),
+					};
+			effectArray.push(newEffect);
+		}
+		let elt = {"id": String(randomBusinessAdvantageArray[i].id),
+				"effects": effectArray,};
+		ret.push(elt);
+	}
+	return ret;
+}
+
+/**
+ * Clone the given career and throw an exception if the shemas is not correct.
+ */
+function cloneCareerJson(jsonCareer) {
+	let ret = {
+			"id": String(jsonCareer.id),
+			"condition": copyCondition(jsonCareer.condition),
+			"competence": copyStringArry(jsonCareer.competence),
+			"bitchyCompetence": copyStringArry(jsonCareer.bitchyCompetence),
+			"competenceChoice": copyCompetenceChoice(jsonCareer.competenceChoice),
+			"progression": copyProgression(jsonCareer.progression),
+			"contact": parseFloat(jsonCareer.contact),
+			"allySupplier": parseFloat(jsonCareer.allySupplier),
+			"rival": parseFloat(jsonCareer.rival), 
+			"enemies": parseFloat(jsonCareer.enemies),
+			"businessAdvantage": copyStringArry(jsonCareer.businessAdvantage),
+			"obtainableEquipmentGroup": copyStringArry(jsonCareer.obtainableEquipmentGroup),
+			"randomBusinessAdvantage": copyRandomBusinessAdvantage(jsonCareer.randomBusinessAdvantage),
+		};
+	return ret;
+}
+
 var career = {
 	"artistCraftMan": {
+		"id": "artistCraftMan",
 		"condition": [],
 		"competence": ["armedStruggle", "education", "eloquence", /*"tradeCraft", *//*"tradeArt", */
 		                "observation", ],
@@ -169,6 +252,7 @@ var career = {
 		],
 	},
 	"scholar": {
+		"id": "scholar",
 		"condition": [{"type": CONDITION_TYPE_GRADUATE_STUDIES, "val": ["science"]}],
 		"competence": ["eloquence", "cryptography", "seeking", "onboardInstrumentation",
 		                "computing", "mentalShield", "Meditation", ],
@@ -277,6 +361,7 @@ var career = {
 	},
 	//"espion": 
 	"xxx": {
+		"id": "xxx",
 		"condition": [],
 		"competence": ["xxx", "xxx", "xxx", "xxx",
 		                "xxx", "xxx", "xxx", "xxx",

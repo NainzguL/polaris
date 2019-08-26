@@ -25,49 +25,39 @@
 					<label>Nom:<input id="name-input" type="text" class="form-control" /></label>
 				</div>
 			</div>
-			 
-			 <div class="accordion" id="condition-accordion">
-				<div class="card">
-					<div class="card-header collapse-header-with-chevron" id="condition-header">
-						<a data-toggle="collapse" data-target="#condition-collapse" aria-expanded="false" aria-controls="condition-collapse" href="#condition-collapse">
-		       				<i class="fa fa-chevron-right"></i> Condition
-		       			</a>
-					</div>
-					
-					<div id="condition-collapse" class="collapse" aria-labelledby="condition-header" data-parent="#condition-accordion">
-	      				<div class="card-body">
-							<div class="form-row">
-								<div class="col-auto">
-									<label><input id="condition-exp-check" class="form-check-input" type="checkbox" /> Experience dans une carrier</label>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-auto">
-									<label>Année:<input id="condition-exp-year-input" type="number" value="1" min="1" max="20" class="form-control" disabled/></label>
-								</div>
-								<div class="col-auto">
-									<label>Carrier:<select id="condition-exp-career-select" class="form-control selectpicker" data-live-search="true" data-container="body" multiple="multiple" data-selected-text-format="count > 4" disabled>
-				 					</select></label>
-								</div>
-							</div>
-							
-							<div class="form-row">
-								<div class="col-auto">
-									<label><input id="condition-studies-check" class="form-check-input" type="checkbox" /> Etudes particulieres</label>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-auto">
-									<label>Etudes:<select id="condition-studies-type-select" class="form-control selectpicker" data-container="body" disabled>
-				 					</select></label>
-								</div>
-							</div>
-						</div>
-					</div>
+			
+			<hr>
+			<h3>Condition</h3>
+			
+			<div class="form-row">
+				<div class="col-auto">
+					<label><input id="condition-exp-check" class="form-check-input" type="checkbox" /> Experience dans une carrier</label>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-auto">
+					<label>Année:<input id="condition-exp-year-input" type="number" value="1" min="1" max="20" class="form-control" disabled/></label>
+				</div>
+				<div class="col-auto">
+					<label>Carrier:<select id="condition-exp-career-select" class="form-control selectpicker" data-live-search="true" data-container="body" multiple="multiple" data-selected-text-format="count > 4" disabled>
+ 					</select></label>
 				</div>
 			</div>
 			
-			<h5>Compétence</h5>
+			<div class="form-row">
+				<div class="col-auto">
+					<label><input id="condition-studies-check" class="form-check-input" type="checkbox" /> Etudes particulieres</label>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-auto">
+					<label>Etudes:<select id="condition-studies-type-select" class="form-control selectpicker" data-container="body" disabled>
+ 					</select></label>
+				</div>
+			</div>
+			
+			<hr>
+			<h3>Compétence</h3>
 			
 			<div id="competence-choice-palceholder">
 			</div>

@@ -74,33 +74,6 @@ function setCurentCareer(newCareer) {
 		addCmpChoiceUi(newCareer.competenceChoice[i].number, newCareer.competenceChoice[i].competence)
 	}
 	
-	
-	/*
-	$(".competenceChoice-div-save").map(function(){
-		let numMapArray = $(this).find(".competenceChoice-num-save").map(function(){ 
-			if ($(this)[0].tagName.toUpperCase() !== "SELECT") {
-				return 0;
-			}
-			return parseInt($(this).val());
-		});
-		let num = numMapArray.toArray().reduce(function(accumulate, val) { return accumulate + val;});
-		
-		let cmpMapArray = $(this).find(".competenceChoice-cmp-save");
-		let cmps = [];
-		for (let elt in cmpMapArray) {
-			if (cmpMapArray[elt].tagName.toUpperCase() === "SELECT") {
-				cmps = $(cmpMapArray[elt]).val();
-				break;
-			}
-		}
-		addCmpChoice(curentCareer, num, cmps);
-	});
-	*/
-
-	/*
-	$(".competenceChoice-div-save")
-	*/
-	
 	curentCareer = newCareer;
 }
 

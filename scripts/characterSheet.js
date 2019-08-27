@@ -228,6 +228,8 @@ function setCareer(careerId){
 		let select = document.createElement("select");
 		select.classList.add("selectpicker");
 		select.classList.add("carrer-cmp-choice");
+		select.setAttribute("data-style", "");
+		select.setAttribute("data-style-base", "form-control");
 		select.setAttribute("multiple", "multiple");
 		select.setAttribute("data-selected-text-format", "count");
 		select.setAttribute("data-max-options", competenceChoice[i].number);

@@ -177,7 +177,7 @@ function addCmpChoiceUi(num, cmps) {
 	let htmlCode = '<div class="form-row align-items-center competenceChoice-div-save" id="'+idDiv+'">'
 		+ '<div class="col-auto">Choix: </div>'
 		+ '<div class="col-auto">'
-		+ '<select id="'+idSelctNum+'" class="form-control selectpicker competenceChoice-num-save" data-container="body">'
+		+ '<select id="'+idSelctNum+'" class="form-control selectpicker competenceChoice-num-save" data-style="" data-style-base="form-control" data-container="body">'
 		+ '<option value="1">Une</option><option value="2">Deux</option><option value="3">Trois</option>'
 		+ '<option value="4">Quatre</option><option value="5">Cinq</option><option value="6">Six</option>'
 		+ '<option value="7">Sept</option><option value="8">Huit</option><option value="9">Neuf</option>'
@@ -185,7 +185,7 @@ function addCmpChoiceUi(num, cmps) {
 		+ '</div>'
 		+ '<div class="col-auto"> compétence(s) parmis </div>'
 		+ '<div class="col-auto">'
-		+ '<select id="'+idSelctCmp+'" class="form-control selectpicker competenceChoice-cmp-save" data-live-search="true" data-container="body" multiple="multiple" data-selected-text-format="count > 4">';
+		+ '<select id="'+idSelctCmp+'" class="form-control selectpicker competenceChoice-cmp-save" data-style="" data-style-base="form-control" data-live-search="true" data-container="body" multiple="multiple" data-selected-text-format="count > 4">';
 	for(let categoryId in comps){
 		let category = comps[categoryId];
 		for(let compId in category) {
@@ -267,7 +267,7 @@ function htmlForCompSelect(categoryId, category, saveClass) {
 		+ '<div class="col-auto">'
 		+ '<label>'
 		+ translate("competence", categoryId) + ": "
-		+ '<select class="form-control selectpicker '+saveClass+'" data-live-search="true" multiple="multiple" data-selected-text-format="count > 4">';
+		+ '<select class="form-control selectpicker '+saveClass+'" data-style="" data-style-base="form-control" data-live-search="true" multiple="multiple" data-selected-text-format="count > 4">';
 	
 	for(let compId in category) {
 		htmlCode = htmlCode + '<option value="'+compId+'">' + translate("competence", compId) + '</option>';

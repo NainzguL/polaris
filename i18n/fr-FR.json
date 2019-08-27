@@ -230,6 +230,7 @@ var locale = {
 		"governmentFunding": "Financement gouvernemental",
 		"scholarNetwork": "Réseau d’érudits",
 		"network": "Réseau",
+		"informersNetwork": "Réseau d’informateurs",
 		"privateCabin": "Cabine privée",
 		"data": "Données",
 		"doubleAgent": " Agent double",
@@ -237,12 +238,13 @@ var locale = {
 		"tampering": "Falsification",
 		"falseIdentities": "Fausses identités",
 		"battle": "Bataille",
-		"militaryAward": "Distinction",
+		"award": "Distinction",
 		"hero": "Héros",
 		"elite": "Élite",
 		"formation": "Formation",
 		"comradesInArms": "Camarades de combat",
 		"privateMilitia": "Mercenaires/Milice privée",
+		"borderlineProcedure": "Procédures limites"
 	},
 	"career": {
 		"artistCraftMan": "Artisan/Artiste",
@@ -254,5 +256,6 @@ var locale = {
 		"eliteSoldierGround": "Commando de surface",
 		"eliteSoldierspecial": "Forces spéciales",
 		"soldier": "Soldat/Milicien",
+		"investigator": "Policier/Enquêteur"
 	},
 };

@@ -156,7 +156,7 @@ var career = {
 		"bitchyCompetence": ["natOriginNation"],
 		"competenceChoice": [{"number": 3, "competence": ["singing", "storyteller", "dance", "music"]}],
 		"progression": {
-			"1-2": 50,
+			"0-2": 50,
 			"3-6": 1500,
 			"7-12": 15000,
 			"13-": 30000
@@ -266,7 +266,7 @@ var career = {
 		                     {"number": 2, 
 		                      "competence": ["natGeneticist", "natAllianceAzure", "natThemis", ]}],
 		"progression": {
-			"1-2": 1000,
+			"0-2": 1000,
 			"3-6": 2000,
 			"7-12": 4000,
 			"13-": 14000,
@@ -375,7 +375,7 @@ var career = {
 							"natRiftState", "natCapFederation", "natFuegoLibertad"
 							"natLemurie", "natRodhia", "natIndus"],
 		"progression": {
-			"1-6": 600,
+			"0-6": 600,
 			"7-": 6000,
 		},
 		"contact": 1.,
@@ -461,7 +461,7 @@ var career = {
 		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
 		"bitchyCompetence": ["natOriginNation"],
 		"progression": {
-			"1-2": 400,
+			"0-2": 400,
 			"3-5": 800,
 			"6-7": 3000,
 			"8-": 6000,
@@ -487,7 +487,7 @@ var career = {
 				 ],
 			},
 			{
-				"id": "militaryAward",
+				"id": "award",
 				"effects": [
 					{"type": "income", "field": "oneYearMultiplier", "val": 2},
 					{"type": "competencePoint", "field": "playerChoice", "val": 3},
@@ -563,7 +563,7 @@ var career = {
 		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
 		"bitchyCompetence": ["natOriginNation"],
 		"progression": {
-			"1-2": 500,
+			"0-2": 500,
 			"3-5": 1200,
 			"6-7": 3600,
 			"8-": 7500,
@@ -589,7 +589,7 @@ var career = {
 				 ],
 			},
 			{
-				"id": "militaryAward",
+				"id": "award",
 				"effects": [
 					{"type": "income", "field": "oneYearMultiplier", "val": 2},
 					{"type": "competencePoint", "field": "playerChoice", "val": 3},
@@ -665,7 +665,7 @@ var career = {
 		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
 		"bitchyCompetence": ["natOriginNation"],
 		"progression": {
-			"1-2": 500,
+			"0-2": 500,
 			"3-5": 1200,
 			"6-7": 3600,
 			"8-": 7500,
@@ -691,7 +691,7 @@ var career = {
 				 ],
 			},
 			{
-				"id": "militaryAward",
+				"id": "award",
 				"effects": [
 					{"type": "income", "field": "oneYearMultiplier", "val": 2},
 					{"type": "competencePoint", "field": "playerChoice", "val": 3},
@@ -766,7 +766,7 @@ var career = {
 		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
 		"bitchyCompetence": ["natOriginNation"],
 		"progression": {
-			"1-2": 400,
+			"0-2": 400,
 			"3-5": 800,
 			"6-7": 3000,
 			"8-": 6000,
@@ -792,7 +792,7 @@ var career = {
 				 ],
 			},
 			{
-				"id": "militaryAward",
+				"id": "award",
 				"effects": [
 					{"type": "income", "field": "oneYearMultiplier", "val": 2},
 					{"type": "competencePoint", "field": "playerChoice", "val": 3},
@@ -854,7 +854,104 @@ var career = {
 			}
 		],
 	},
-	//"investigator":
+	"investigator": {
+		"id": "investigator",
+		"condition": [],
+		"competence": ["athletism", "endurance", "wrestling", "defensiveMartialArts",
+		                "unarmedStruggle", "armedStruggle", "handguns", "longGuns",
+		                "psychology", "leadership", "intimidation", "bureaucracy",
+		                "natCriminality", "education", "seeking", "knowLaw",
+		                "knowForensics", "discretion", "stealth", "observation",
+		                "monitoring", "computing", "security", "firstAid", ],
+		"bitchyCompetence": ["natOriginNation"],
+		"competenceChoice": [],
+		"progression": {
+			"0-1": 200,
+			"2-5": 800,
+			"6-7": 2400,
+			"8-11": 5000,
+			"12-15": 12000,
+			"16-": 20000,
+		},
+		"contact": 1.,
+		"allySupplier": 0.25,
+		"rival": 0.5, 
+		"enemies": 0.,
+		"businessAdvantage": ["dataBase", "fame", "corruptionBlackmail", "relationship",],
+		"obtainableEquipmentGroup": ["standardEquipment", "handgun", "standardProtections", ],
+		"randomBusinessAdvantage": [
+			{
+				"id": "atrributUp",
+				"effects": [{"type": "attribut", "field": "int", "val": 1}],
+			},
+			{
+				"id": "award",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 2},
+					{"type": "competencePoint", "field": "playerChoice", "val": 3},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 3},
+				 ],
+			},
+			{
+				"id": "performance",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 1},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 1},
+				 ],
+			},
+			{
+				"id": "hero",
+				"effects": [
+					{"type": "income", "field": "oneYearMultiplier", "val": 3},
+					{"type": "competencePoint", "field": "playerChoice", "val": 4},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 4},
+				 ],
+			},
+			{
+				"id": "elite",
+				"effects": [
+					{"type": "income", "field": "percentageIncreaseFromThisYear", "val": 100},
+					{"type": "competencePoint", "field": "playerChoice", "val": 6},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 6},
+				 ],
+			},
+			{
+				"id": "informersNetwork",
+				"effects": [
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 8},
+				 ],
+			},
+			{
+				"id": "borderlineProcedure",
+				"effects": [
+				 	{"type": "businessAdvantage", "field": "corruptionBlackmail", "val": 4},
+					{"type": "income", "field": "oneYearMultiplier", "val": 2},
+				   	{"type": "contact", "field": "enemies", "val": 1},
+				 ],
+			},
+			{
+				"id": "formation",
+				"effects": [
+					{"type": "newprofessionalCompetence", "field": "playerChoice", "val": 1},
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 6},
+				 ],
+			},
+			{
+				"id": "privateMilitia",
+				"effects": [
+				   	{"type": "contact", "field": "ally", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 4},
+				 ],
+			},
+			{
+				"id": "playerChoice",
+				"effects": [
+					{"type": "randomBusinessAdvantage", "field": "playerChoice", "val": 1},
+				 ],
+			}
+		],
+	},
 	//"contrebandier":
 	//"soldier":
 	//"barman":  

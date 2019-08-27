@@ -205,6 +205,7 @@ var locale = {
 		"translationDataDrone": "Drone de traduction et de stockage de données",
 		"contactWeapon": "Arme de contact", 
 		"handgun": "Arme de poing",
+		"longGun": "Arme de poing",
 		"spyingEquipment": "Matériel d’espionnage",
 		"securityTools": "Matériel de sécurité", 
 		"tamperingTools": "Matériel de falsification",
@@ -213,6 +214,7 @@ var locale = {
 		"externalBattlesuits": "Exo-armures de Surface",
 		"hybridBattlesuits": "Exo-armures hybrides",
 		"industrialArmor": "Exo-armures industrielles",
+		"smalTransportVessel": " Petit navire de transport",
 	},
 	"randomBusinessAdvantage": {
 		"atrributUp": "Attribut augmenté",
@@ -244,7 +246,9 @@ var locale = {
 		"formation": "Formation",
 		"comradesInArms": "Camarades de combat",
 		"privateMilitia": "Mercenaires/Milice privée",
-		"borderlineProcedure": "Procédures limites"
+		"borderlineProcedure": "Procédures limites",
+		"exclusiveContract": "Exclusivité",
+		"hideout": "Caches et planques ",
 	},
 	"career": {
 		"artistCraftMan": "Artisan/Artiste",
@@ -256,6 +260,7 @@ var locale = {
 		"eliteSoldierGround": "Commando de surface",
 		"eliteSoldierspecial": "Forces spéciales",
 		"soldier": "Soldat/Milicien",
-		"investigator": "Policier/Enquêteur"
+		"investigator": "Policier/Enquêteur",
+		"smuggler": "contrebandier",
 	},
 };

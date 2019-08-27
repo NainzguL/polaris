@@ -371,9 +371,9 @@ var career = {
 		                "tampering", "computing", "hacking", "security","mentalShield" ],
 		"bitchyCompetence": ["natOriginNation"],
 		"competenceChoice": [{"number": 2, "competence": ["natHegemonie", "natRedLeague", "natCoralRepublic", 
-							"natEquinoxe","natMediterraneanUnion", "natPolarAlliance", 
-							"natRiftState", "natCapFederation", "natFuegoLibertad"
-							"natLemurie", "natRodhia", "natIndus"],
+							"natEquinoxe", "natMediterraneanUnion", "natPolarAlliance", 
+							"natRiftState", "natCapFederation", "natFuegoLibertad",
+							"natLemurie", "natRodhia", "natIndus"]}],
 		"progression": {
 			"0-6": 600,
 			"7-": 6000,
@@ -952,7 +952,105 @@ var career = {
 			}
 		],
 	},
-	//"contrebandier":
+	"smuggler": {
+		"id": "smuggler",
+		"condition": [],
+		"competence": ["unarmedStruggle", "armedStruggle", "handguns", "longGuns",
+		                "eloquence", "intimidation", "bureaucracy", "natPirate",
+		                "natScavenger", "natCriminality", "navigation", "dissimulation",
+		                "vesselsPilotage", "scootersDriving", "onboardInstrumentation", "tampering",],
+		"bitchyCompetence": [],
+		"competenceChoice": [{
+			"number": 4, 
+			"competence": ["tradeFood", "tradeRawMaterial", "tradeDevice",
+			  			   "tradeElectronic", "tradeMedical", "tradeVehicle", 
+						   "tradeWeapon", "tradeDrug", "tradeBlack",]}],
+		"progression": {
+			"0-6": 350,
+			"7-": 55000,
+		},
+		"contact": 1.,
+		"allySupplier": 0.33333333,
+		"rival": 0.5, 
+		"enemies": 0.,
+		"businessAdvantage": ["fame", "relationship", "tampering", "smugglingRing", 
+							  "hideout", "stockGoods", "corruptionBlackmail", "equipement",],
+		"obtainableEquipmentGroup": ["longGun", "handgun", "contactWeapon", "smalTransportVessel",],
+		"randomBusinessAdvantage": [
+			{
+				"id": "atrributUp",
+				"effects": [{"type": "attribut", "field": "ada", "val": 1}],
+			},
+			{
+				"id": "performance",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 1},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 2},
+				 	{"type": "businessAdvantage", "field": "stockGoods", "val": 2},
+				 ],
+			},
+			{
+				"id": "exploit",
+				"effects": [
+					{"type": "competencePoint", "field": "playerChoice", "val": 2},
+				 	{"type": "businessAdvantage", "field": "fame", "val": 4},
+				 	{"type": "businessAdvantage", "field": "stockGoods", "val": 4},
+					{"type": "income", "field": "oneYearMultiplier", "val": 2},
+				 ],
+			},
+			{
+				"id": "contract",
+				"effects": [
+				 	{"type": "businessAdvantage", "field": "fame", "val": 2},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 3},
+					{"type": "income", "field": "percentageIncreaseFromThisYear", "val": 10},
+				 ],
+			},
+			{
+				"id": "exclusiveContract",
+				"effects": [
+				 	{"type": "businessAdvantage", "field": "fame", "val": 4},
+					{"type": "income", "field": "percentageIncreaseFromThisYear", "val": 20},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 5},
+				   	{"type": "contact", "field": "ally", "val": 1},
+				 ],
+			},
+			{
+				"id": "corruption",
+				"effects": [
+					{"type": "roleplayElement", "field": "port", "val": 1},
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 	{"type": "businessAdvantage", "field": "corruptionBlackmail", "val": 4},
+				 	{"type": "businessAdvantage", "field": "hideout", "val": 1},
+				 ],
+			},
+			{
+				"id": "tampering",
+				"effects": [
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 1},
+				 	{"type": "businessAdvantage", "field": "tampering", "val": 4},
+				 ],
+			},
+			{
+				"id": "network",
+				"effects": [
+				 	{"type": "businessAdvantage", "field": "relationship", "val": 6},
+				 ],
+			},
+			{
+				"id": "hideout",
+				"effects": [
+				 	{"type": "businessAdvantage", "field": "hideout", "val": 6},
+				 ],
+			},
+			{
+				"id": "playerChoice",
+				"effects": [
+					{"type": "randomBusinessAdvantage", "field": "playerChoice", "val": 1},
+				 ],
+			}
+		],
+	},
 	//"soldier":
 	//"barman":  
 	//"contrebandier":

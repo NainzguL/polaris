@@ -84,27 +84,29 @@
 			<hr>
 			<h3>Progression salariales</h3>
 			
+			<!-- 
+			<table class="table-bordered form-inline">
+			<tr class="table-primary"><th>Années</th><th>Économies</th></tr><tr><td><span id="progression-0-from-span">0</span> à <input type="number" value="2" min="1" class="form-control progression-year-input" id="progression-0-to-inpute" /></td><td><input type="number" value="500" min="0" class="form-control progression-income-input" /> Sol / ans</td></tr><tr><td><span id="progression-1-from-span">2</span> à <input type="number" value="5" min="3" class="form-control progression-year-input" id="progression-1-to-inpute" /></td><td><input type="number" value="1000" min="0" class="form-control progression-income-input" /> Sol / ans</td></tr><tr><td><span id="progression-2-from-span">6</span> et plus</td><td><input type="number" value="undefined" min="0" class="form-control progression-income-input" /> Sol / ans</td></tr><tr><td colspan="2"><button type="button" class="btn btn-primary" onclick="addNewEntry()">Ajouter une entré</button><button type="button" class="btn btn-primary" onclick="removeLastEntry()">Supprimer la dernier entré</button></td></tr>
+			</table>
 			
-			<table id="salary-progression-table" class="table-bordered form-inline polaTable">
-				<tr class="table-primary">
-					<th>Années</th>
-					<th>Économies</th>
-				</tr>
-				<tr>
-					<td>1 à <input type="number" value="2" min="2" class="form-control" /></td>
-					<td><input type="number" value="500" min="0" class="form-control" /> Sol / ans</td>
-				</tr>
-				<tr>
-					<td>3 à <input type="number" value="5" min="3" class="form-control" /></td>
-					<td><input type="number" value="1000" min="0" class="form-control" /> Sol / ans</td>
-				</tr>
-				<tr>
-					<td>6 et plus</td>
-					<td><input type="number" value="2500" min="0" class="form-control" /> Sol / ans</td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="button" class="btn btn-primary">Ajouter une entré</button></td>
-				</tr>
+			
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span id="progression-1-from-span">2</span>&nbsp;à 
+					</span>
+				</div>
+				<input type="number" value="5" min="3" class="form-control progression-year-input" id="progression-1-to-inpute" />
+			</div>
+			<div class="input-group mb-3">
+				<input type="number" value="1000" min="0" class="form-control progression-income-input" />
+				<div class="input-group-append">
+					<span class="input-group-text"> Sol / ans</span>
+				</div>
+			</div>
+			 -->
+			
+			<table id="salary-progression-table" class="table-bordered">
 			</table>
 			 
 		</form>

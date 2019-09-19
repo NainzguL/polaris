@@ -69,7 +69,6 @@ function addCmpChoice(careerArg, num, cmpArray) {
 	}
 }
 
-
 function copyStringArry(strArray) {
 	let ret = [];
 	for (let i = 0; i < strArray.length; i++) {
@@ -98,10 +97,10 @@ function copyCompetenceChoice(competenceChoiceArray) {
 	return ret;
 }
 
-function copyProgression(progressionObj) {
-	let ret = {};
-	for (elt in progressionObj) {
-		ret[elt] = parseInt(progressionObj[elt]);
+function copyProgression(progressionArray) {
+	let ret = [];
+	for (let i = 0; i < progressionArray.length; i++) {
+		ret.push([parseInt(progressionArray[i][0]), parseInt(progressionArray[i][1]), parseInt(progressionArray[i][2])]);
 	}
 	return ret;
 }
@@ -126,7 +125,7 @@ function copyRandomBusinessAdvantage(randomBusinessAdvantageArray) {
 }
 
 /**
- * Clone the given career and throw an exception if the shemas is not correct.
+ * Clone the given career and throw an exception if the schemas is not correct.
  */
 function cloneCareerJson(jsonCareer) {
 	let ret = {
@@ -155,12 +154,12 @@ var career = {
 		                "observation", ],
 		"bitchyCompetence": ["natOriginNation"],
 		"competenceChoice": [{"number": 3, "competence": ["singing", "storyteller", "dance", "music"]}],
-		"progression": {
-			"0-2": 50,
-			"3-6": 1500,
-			"7-12": 15000,
-			"13-": 30000
-		},
+		"progression": [
+			[0, 2, 50],
+			[3, 6, 1500],
+			[7, 12,15000],
+			[13, null, 30000],
+		],
 		"contact": 1.,
 		"allySupplier": 0.5,
 		"rival": 0.25, 
@@ -265,12 +264,12 @@ var career = {
 		                                     "knowPoliticalScience", "knowSociology", "knowZoology", ]},
 		                     {"number": 2, 
 		                      "competence": ["natGeneticist", "natAllianceAzure", "natThemis", ]}],
-		"progression": {
-			"0-2": 1000,
-			"3-6": 2000,
-			"7-12": 4000,
-			"13-": 14000,
-		},
+		"progression": [
+			[0, 2, 1000],
+			[3, 6, 2000],
+			[7, 12, 4000],
+			[13, null, 14000],
+		],
 		"contact": 1.,
 		"allySupplier": 0.5,
 		"rival": 0.5, 
@@ -374,10 +373,10 @@ var career = {
 							"natEquinoxe", "natMediterraneanUnion", "natPolarAlliance", 
 							"natRiftState", "natCapFederation", "natFuegoLibertad",
 							"natLemurie", "natRodhia", "natIndus"]}],
-		"progression": {
-			"0-6": 600,
-			"7-": 6000,
-		},
+		"progression": [
+			[0, 6, 600],
+			[7, null, 6000],
+		],
 		"contact": 1.,
 		"allySupplier": 0.33333333333333333,
 		"rival": 0.5, 
@@ -460,12 +459,12 @@ var career = {
 		               "hunting", "knowOceans", "traps",],
 		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
 		"bitchyCompetence": ["natOriginNation"],
-		"progression": {
-			"0-2": 400,
-			"3-5": 800,
-			"6-7": 3000,
-			"8-": 6000,
-		},
+		"progression": [
+			[0, 2, 400],
+			[3, 5, 800],
+			[6, 7, 3000],
+			[8, null, 6000],
+		],
 		"contact": 0.5,
 		"allySupplier": 0.25,
 		"rival": 0.1666666, 
@@ -562,12 +561,12 @@ var career = {
 	               "knowUnderground", "traps", ],
 		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
 		"bitchyCompetence": ["natOriginNation"],
-		"progression": {
-			"0-2": 500,
-			"3-5": 1200,
-			"6-7": 3600,
-			"8-": 7500,
-		},
+		"progression": [
+			[0, 2, 500],
+			[3, 5, 1200],
+			[6, 7, 3600],
+			[8, null, 7500],
+		],
 		"contact": 0.33333333,
 		"allySupplier": 0.2,
 		"rival": 0.1666666, 
@@ -664,12 +663,12 @@ var career = {
 	               "vehicleDriving", "knowLand", "traps", ],
 		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
 		"bitchyCompetence": ["natOriginNation"],
-		"progression": {
-			"0-2": 500,
-			"3-5": 1200,
-			"6-7": 3600,
-			"8-": 7500,
-		},
+		"progression": [
+			[0, 2, 500],
+			[3, 5, 1200],
+			[6, 7, 3600],
+			[8, null, 7500],
+		],
 		"contact": 0.2,
 		"allySupplier": 0.1666666,
 		"rival": 0.1666666, 
@@ -765,12 +764,12 @@ var career = {
 	               "sniper", "monitoring", "security", ],
 		"competenceChoice": [{"number": 1, "competence": ["aggressiveMartialArts", "defensiveMartialArts", "wrestling"]}],
 		"bitchyCompetence": ["natOriginNation"],
-		"progression": {
-			"0-2": 400,
-			"3-5": 800,
-			"6-7": 3000,
-			"8-": 6000,
-		},
+		"progression": [
+			[0, 2, 400],
+			[3, 5, 800],
+			[6, 7, 3000],
+			[8, null, 6000],
+		],
 		"contact": 0.5,
 		"allySupplier": 0.25,
 		"rival": 0.1666666, 
@@ -865,14 +864,14 @@ var career = {
 		                "monitoring", "computing", "security", "firstAid", ],
 		"bitchyCompetence": ["natOriginNation"],
 		"competenceChoice": [],
-		"progression": {
-			"0-1": 200,
-			"2-5": 800,
-			"6-7": 2400,
-			"8-11": 5000,
-			"12-15": 12000,
-			"16-": 20000,
-		},
+		"progression": [
+			[0, 1, 200],
+			[2, 5, 800],
+			[6, 7, 2400],
+			[8, 11, 5000],
+			[12, 15, 12000],
+			[16, null, 20000],
+		],
 		"contact": 1.,
 		"allySupplier": 0.25,
 		"rival": 0.5, 
@@ -965,10 +964,10 @@ var career = {
 			"competence": ["tradeFood", "tradeRawMaterial", "tradeDevice",
 			  			   "tradeElectronic", "tradeMedical", "tradeVehicle", 
 						   "tradeWeapon", "tradeDrug", "tradeBlack",]}],
-		"progression": {
-			"0-6": 350,
-			"7-": 55000,
-		},
+		"progression": [
+			[0, 6, 350],
+			[7, null, 55000],
+		],
 		"contact": 1.,
 		"allySupplier": 0.33333333,
 		"rival": 0.5, 
@@ -1072,11 +1071,11 @@ var career = {
 		                "xxx", "xxx", "xxx", "xxx", ],
 		"bitchyCompetence": ["natOriginNation"],
 		"competenceChoice": [],
-		"progression": {
-			"xxx": 00,
-			"xxx": 00,
-			"xxx": 00,
-			"xxx": 00,
+		"progression": [
+			[00, 10, 00],
+			[20, 30, 00],
+			[40, 50, 00],
+			[60, null, 00],
 		},
 		"contact": 1.,
 		"allySupplier": 0.5,

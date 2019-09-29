@@ -1,4 +1,4 @@
-var character = {
+let empyCharacterSheet = {
 	"name": "",
 	"archetype": "",
 	"geneticType": "",
@@ -9,6 +9,10 @@ var character = {
 	"socialClass": "",
 	"formation": "",
 	"higherEducation": "",
+	"creation": {
+		"pcToPa": 0,
+		"yearExperience": 0
+	},
 	"attribute": {
 		"for": 7,
 		"con": 7,
@@ -19,6 +23,7 @@ var character = {
 		"vol": 7,
 		"pre": 7
 	},
+	"careerCompetenceChoise": [],
 	"competence": {
 		"physicalSkills" : {
 			"balance": 0,
@@ -191,3 +196,9 @@ var character = {
 		}
 	}
 };
+
+function newEmpyCharacterSheet() {
+	return JSON.parse(JSON.stringify(empyCharacterSheet));
+}
+
+

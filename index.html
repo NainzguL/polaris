@@ -8,10 +8,23 @@
 	</head>
 	<body>
 		<form>
+		
+			<div class="form-row">
+				<div class="col-auto">
+					<button type="button" class="btn btn-primary" onclick="exportCaracJson()">Exporter</button>
+				</div>
+				<div class="col-auto">
+					<button type="button" class="btn btn-primary" onclick="openSelectFile()">Charger</button>
+					<input type="file" id="hiden-file-input" style="display: none;">
+				</div>
+			</div>
+			
+			<hr>
+		
 			<!-- Character Information -->
 			<div class="form-row">
 				<div class="col-auto">
-					<label>Nom:<input type="text" name="name" placeholder="Nom du personnage" class="form-control" /></label>
+					<label>Nom:<input type="text" name="name" id="name-input" placeholder="Nom du personnage" class="form-control" /></label>
 				</div>
 				<div class="col-auto">
 					<label>PC:<input type="number" name="pc" value="20" min="0" readonly="readonly" id="left-pc" class="form-control" /></label>
@@ -146,5 +159,6 @@
 	<script type="text/javascript" language="javascript" src="i18n/fr-FR.json"></script> 
 	<script type="text/javascript" language="javascript" src="scripts/comp.json"></script> 
 	<script type="text/javascript" language="javascript" src="scripts/career.js"></script> 
+	<script type="text/javascript" language="javascript" src="scripts/character.js"></script> 
 	<script src="scripts/characterSheet.js"></script>
 </html>

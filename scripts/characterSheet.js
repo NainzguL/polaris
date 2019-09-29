@@ -146,7 +146,7 @@ function isCarrerCmp(careerId, compId) {
 	}
 	let cmpChoice = $(".carrer-cmp-choice-option");
 	for (let i = 0; i < cmpChoice.length; i++) {
-		if (cmpChoice[i].selected &&  cmpChoice[i].value === compId) {
+		if (cmpChoice[i].selected && cmpChoice[i].value === compId) {
 			return true;
 		}
 	}
@@ -289,6 +289,105 @@ function validateNumField(field){
 	field.removeClass("is-invalid");
 };
 
+
+function openSelectFile() {
+	document.getElementById("hiden-file-input").click();
+}
+
+function exportCaracJson() {
+	let characterSheet = newEmpyCharacterSheet();
+	characterSheet.name = $("#name-input").val();
+	characterSheet.archetype = $("#archetype-select").val();
+	characterSheet.creation.yearExperience = parseInt($("#year-experience-field").val());
+	characterSheet.careerCompetenceChoise = [];
+	let cmpChoice = $(".carrer-cmp-choice-option");
+	for (let i = 0; i < cmpChoice.length; i++) {
+		if (cmpChoice[i].selected) {
+			characterSheet.careerCompetenceChoise.push(cmpChoice[i].value);
+		}
+	}
+	characterSheet.creation.pcToPa = parseInt($("#pc-to-pa").val());
+	characterSheet.attribute.for = parseInt($("#for-field").val());
+	characterSheet.attribute.con = parseInt($("#con-field").val());
+	characterSheet.attribute.coo = parseInt($("#coo-field").val());
+	characterSheet.attribute.ada = parseInt($("#ada-field").val());
+	characterSheet.attribute.per = parseInt($("#per-field").val());
+	characterSheet.attribute.int = parseInt($("#int-field").val());
+	characterSheet.attribute.vol = parseInt($("#vol-field").val());
+	characterSheet.attribute.pre = parseInt($("#pre-field").val());
+	for(let categoryName in comps){
+		let category = comps[categoryName];
+		for(let compName in category){
+			let htmlObj = $("#" + compName + "-mastery-field");
+			characterSheet.competence[categoryName][compName] = parseInt(htmlObj.val());
+		}
+	}
+	let toExport = JSON.stringify(characterSheet);
+	download("myCharacterSheet.json", toExport)
+}
+
+function showLoadFailed() {
+	alert("Ereur: le fichier selectioné n'est pas valide");
+}
+
+function loadCharacterSheet(characterSheet) {
+	
+	$("#name-input").val(characterSheet.name);
+	$("#archetype-select").selectpicker('val',characterSheet.archetype);
+	$("#archetype-select").selectpicker('refresh');
+	setCareer(characterSheet.archetype);
+	
+	$("#year-experience-field").val(characterSheet.creation.yearExperience);
+	$(".carrer-cmp-choice").map(function(){
+		let cmpChoiseSelect = $(this);
+		cmpChoiseSelect.selectpicker('val', characterSheet.careerCompetenceChoise);
+		cmpChoiseSelect.selectpicker('refresh');
+	});
+	$("#pc-to-pa").val(characterSheet.creation.pcToPa);
+	$("#for-field").val(characterSheet.attribute.for);
+	$("#con-field").val(characterSheet.attribute.con);
+	$("#coo-field").val(characterSheet.attribute.coo);
+	$("#ada-field").val(characterSheet.attribute.ada);
+	$("#per-field").val(characterSheet.attribute.per);
+	$("#int-field").val(characterSheet.attribute.int);
+	$("#vol-field").val(characterSheet.attribute.vol);
+	$("#pre-field").val(characterSheet.attribute.pre);
+	
+	for(let categoryName in comps){
+		let category = comps[categoryName];
+		for(let compName in category){
+			let htmlObj = $("#" + compName + "-mastery-field");
+			htmlObj.val(characterSheet.competence[categoryName][compName]);
+		}
+	}
+	
+	refreshAllNaturalAtr();
+	refreshLeftPc();
+	refreshRemainingAp();
+	refreshCompetences();
+	refreshCmpPoint();
+	updateRelation(null);
+	upadateBusinessAdvantagePoint();
+	validateBusinessAdvantagePoint();
+	validateNumField($("#attribute-points"));
+}
+
+function refreshOneNaturalAttr(attrId) {
+	let attrVal = $("#" + attrId + "-field").val();
+	$('#' + attrId + '-apt-nat').val(tables["attributesToBase"][attrVal]);
+}
+
+function refreshAllNaturalAtr() {
+	refreshOneNaturalAttr("for");
+	refreshOneNaturalAttr("con");
+	refreshOneNaturalAttr("coo");
+	refreshOneNaturalAttr("ada");
+	refreshOneNaturalAttr("per");
+	refreshOneNaturalAttr("int");
+	refreshOneNaturalAttr("vol");
+	refreshOneNaturalAttr("pre");
+}
+
 $(function(){
 	$("#pc-to-pa").change(function(){
 		$("#attribute-points").val($("#attribute-points").val() + 2 * $(this).val());
@@ -309,7 +408,22 @@ $(function(){
 		refreshCmpPoint();
 		
 		let attrId = $(this).attr('id').split('-')[0];
-		$('#' + attrId + '-apt-nat').val(tables["attributesToBase"][$(this).val()]);
+		refreshOneNaturalAttr(attrId);
+	});
+	document.getElementById("hiden-file-input").onchange = (function (e) {
+	let file = e.target.files[0]; 
+	let reader = new FileReader();
+	reader.readAsText(file,'UTF-8');
+	reader.onload = readerEvent => {
+		let content = readerEvent.target.result;
+		try {
+			let jsonObj = JSON.parse(content);
+			loadCharacterSheet(jsonObj);
+	    } catch (e) {
+	    	console.error(e);
+	    	showLoadFailed();
+	    }
+	}
 	});
 	
 	for(let categoryName in comps){
@@ -356,7 +470,7 @@ $(function(){
 	let careerSelect = $("#archetype-select");
 	for (let careerId in career) {
 		let localeName = translate("career", careerId);
-		careerSelect.append('<option id="'+careerId+'-select-field">'+localeName+'</option>');
+		careerSelect.append('<option id="'+careerId+'-select-field" value="'+careerId+'">'+localeName+'</option>');
 	}
 	careerSelect.on("change", function(){
 		if (careerSelect[0].selectedIndex >= 0){

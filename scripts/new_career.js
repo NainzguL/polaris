@@ -80,6 +80,17 @@ function setCurentCareer(newCareer) {
 	}
 	
 	fillProgressionTable();
+	
+	$("#contacts-input").val(curentCareer.contact);
+	$("#ally-supplier-input").val(curentCareer.allySupplier);
+	$("#rival-input").val(curentCareer.rival);
+	$("#enemies-input").val(curentCareer.enemies);
+	
+	$("#business-advantage-select").selectpicker('val', newCareer.businessAdvantage);
+	$("#business-advantage-select").selectpicker('refresh');
+	
+	$("#obtainable-equipment-group-select").selectpicker('val', newCareer.obtainableEquipmentGroup);
+	$("#obtainable-equipment-group-select").selectpicker('refresh');
 }
 
 function fillProgressionTable() {
@@ -91,8 +102,6 @@ function fillProgressionTable() {
 		let income = curentCareer.progression[0][2];
 		curentCareer.progression = [[0, 1, income], [2, null, income]];
 	}
-	
-	console.log(curentCareer.progression);
 	
 	$("#salary-progression-table").empty();
 	let htmlCode = '<tr class="table-primary">'
@@ -438,9 +447,26 @@ function fillComptence(comps, forCareerComps) {
 	toFill.append(htmlForCompSelect("forCarrer", forCareerComps, "bitchyCompetence-save"));
 }
 
+function fillBusinessAdvantage(){
+	let toFill = $("#business-advantage-select");
+	for (let advantage in locale.businessAdvantage) {
+		toFill.append('<option value="'+advantage+'">'+locale.businessAdvantage[advantage]+'</option>');
+	}
+}
+
+function fillEquipmentGroup(){
+	let toFill = $("#obtainable-equipment-group-select");
+	for (let equipment in locale.equipmentGroup) {
+		toFill.append('<option value="'+equipment+'">'+locale.equipmentGroup[equipment]+'</option>');
+	}
+}
+
+
 function initPage() {
 	fillCareerAndStudies(career,{"etude1": "1", "etude2": "2", "etude3": "3", "science" : "Etude scientifique"});
 	fillComptence(comps, forCareerComps);
+	fillBusinessAdvantage();
+	fillEquipmentGroup();
 	
 	document.getElementById("hiden-file-input").onchange = (function (e) {
 		let file = e.target.files[0]; 
@@ -465,6 +491,22 @@ function initPage() {
 	$("#condition-exp-career-select").change(function(){ validateAndSaveCareer(false); });
 	$("#condition-studies-check").change(function(){validateAndSaveStudies(true); });
 	$("#condition-studies-type-select").change(function(){validateAndSaveStudies(false); });
+	$("#contacts-input").change(function(){ curentCareer.contact = parseFloat($(this).val()); });
+	$("#ally-supplier-input").change(function(){ curentCareer.allySupplier = parseFloat($(this).val()); });
+	$("#rival-input").change(function(){ curentCareer.rival = parseFloat($(this).val()); });
+	$("#enemies-input").change(function(){ curentCareer.enemies = parseFloat($(this).val()); });
+	$("#business-advantage-select").change(function(){ 
+		curentCareer.businessAdvantage = [];
+		$(this).val().map(function(value){
+			curentCareer.businessAdvantage.push(value);
+		});
+	});
+	$("#obtainable-equipment-group-select").change(function(){
+		curentCareer.obtainableEquipmentGroup = [];
+		$(this).val().map(function(value){
+			curentCareer.obtainableEquipmentGroup.push(value);
+		});
+	});
 	
 	$(".competence-save").change(saveCompetance);
 	$(".bitchyCompetence-save").change(saveCompetance);

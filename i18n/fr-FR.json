@@ -205,7 +205,7 @@ var locale = {
 		"translationDataDrone": "Drone de traduction et de stockage de données",
 		"contactWeapon": "Arme de contact", 
 		"handgun": "Arme de poing",
-		"longGun": "Arme de poing",
+		"longGun": "Armes d'épaule",
 		"spyingEquipment": "Matériel d’espionnage",
 		"securityTools": "Matériel de sécurité", 
 		"tamperingTools": "Matériel de falsification",

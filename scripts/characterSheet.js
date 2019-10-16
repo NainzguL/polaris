@@ -1,4 +1,5 @@
 "use strict";
+
 const tables = {
 	attributes: [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 17, 20],
 	attributesToBase: [-4, -4, -4, -4, -3, -2, -1, -1, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6],
@@ -46,22 +47,91 @@ function refreshOneCompetence(cmp) {
 		$("#".concat(compId).concat("-base-field")).val(baseVal);
 
 		//Mastery
-		let mastVal = parseInt($("#".concat(compId).concat("-mastery-field")).val());
+		let mastField = $("#".concat(compId).concat("-mastery-field"));
+		let mastVal = mastField.val();
+		let mastMin = comp.base;
+		if(mastMin === null){
+			mastMin = -4;
+		}
 
-		//Total
-		cmp.val(baseVal + mastVal);
-		if(comp.requirement){
-			let fulfillRequirements = true;
-			for(let requirement in comp.requirement){
-				let requiredLevel = $('#' + requirement + '-total-field').val();
-				if(requiredLevel === undefined || requiredLevel < comp.requirement[requirement]){
-					$(cmp).parents('tr').addClass('table-danger');
-					fulfillRequirements = false;
-					break;
-				}
+		$('.geographicOriginBonus').each(function(){
+			if($(this).attr('data-comp') == compId){
+				mastMin+= parseInt($(this).val());
+				//Break
+				return false;
 			}
-			if(fulfillRequirements){
-				$(cmp).parents('tr').removeClass('table-danger');
+		});
+		$('.socialOriginBonus').each(function(){
+			if($(this).attr('data-comp') == compId){
+				mastMin+= parseInt($(this).val());
+				//Break
+				return false;
+			}
+		});
+		$('.formationOriginBonus').each(function(){
+			if($(this).attr('data-comp') == compId){
+				mastMin+= parseInt($(this).val());
+				//Break
+				return false;
+			}
+		});
+		
+		let careerId = getSelectedCarrerId();
+		if((mastMin < -3) && (mastVal === 'X' || mastVal < -3)){
+			mastField.attr('type', 'text');
+			mastField.val('X');
+			mastField.prop('readonly', true);
+			mastField.addClass('x-competence');
+			cmp.attr('type', 'text');
+			cmp.val('X');
+
+			if(isCarrerCmp(careerId, compId)){
+				cmp.parents('tr').addClass('table-warning');
+			} else {
+				cmp.parents('tr').hide();
+			}
+		} else {
+			if(mastVal === 'X'){
+				mastVal = mastMin;
+				mastField.val(mastVal);
+			} else {
+				mastVal = parseInt(mastVal);
+			}
+			
+			mastField.prop('readonly', false);
+			mastField.attr('type', 'number');
+			mastField.attr('min', mastMin);
+			mastField.removeClass('x-competence');
+			cmp.parents('tr').show();
+			
+			if(mastVal < mastMin){
+				mastField.val(mastMin);
+				mastVal = mastMin;
+			}
+			
+			//Total
+			if(comp.requirement){
+				let fulfillRequirements = true;
+				for(let requirement in comp.requirement){
+					let requiredLevel = $('#' + requirement + '-total-field').val();
+					if(requiredLevel === undefined || requiredLevel < comp.requirement[requirement]){
+						fulfillRequirements = false;
+						break;
+					}
+				}
+
+				if(fulfillRequirements){
+					cmp.parents('tr').removeClass('table-warning');
+					cmp.val(baseVal + mastVal);
+					cmp.attr('type', 'number')
+				} else {
+					cmp.parents('tr').addClass('table-warning');
+					cmp.attr('type', 'text');
+					cmp.val('X');
+				}
+			} else {
+				cmp.attr('type', 'number')
+				cmp.val(baseVal + mastVal);
 			}
 		}
 		
@@ -72,6 +142,10 @@ function refreshOneCompetence(cmp) {
 			}
 		}
 	}
+}
+
+function buyXcomp(compField){
+	compField.val('-3');
 }
 
 /**
@@ -261,6 +335,7 @@ function setCareer(careerId){
 	}
 	
 	updateRelation(careerId);
+	refreshCompetences();
 	refreshCmpPoint();
 }
 
@@ -387,6 +462,62 @@ function refreshAllNaturalAtr() {
 	refreshOneNaturalAttr("vol");
 	refreshOneNaturalAttr("pre");
 }
+/*
+ * Origin selectors
+ */
+function changeOrigin(originIdentifier, originArray, value){
+	$('#' + originIdentifier + 'OriginDetails').empty();
+	for(let comp in originArray[value]){
+		//Technical identifier starts by a "$"
+		if(comp.startsWith('$')){
+			let technicalName = comp.substring(1);
+			let compComunity = nations[$('#belongingCommunity').val()];
+			if(technicalName.startsWith('choice')){
+				for(let i=0;i<originArray[value][comp].length;i++){
+					let select = '<select class="' + originIdentifier + 'OriginChoice form-control">';
+					let firstBonus = undefined;
+					let firstComp = undefined;
+					for(let compChoice in originArray[value][comp][i]){
+						if(firstBonus === undefined){
+							firstBonus = originArray[value][comp][i][compChoice];
+							if(compChoice == "$belongingCommunity"){
+								firstComp = compComunity;
+							} else {
+								firstComp = compChoice;
+							}
+						}
+						if(compChoice == "$belongingCommunity"){
+							select+= '<option value="' + compComunity + '" data-bonus="' + originArray[value][comp][i][compChoice] + '">' + translate('competence', compComunity) + '</option>';
+						} else {
+							select+= '<option value="' + compChoice + '" data-bonus="' + originArray[value][comp][i][compChoice] + '">' + translate('competence', compChoice) + '</option>';
+						}
+					}
+					select+= '</select>';
+					$('#' + originIdentifier + 'OriginDetails').append('<div class="form-row"><div class="col">' + select + '</div><div class="col-md-2"><input type="number" class="form-control ' + originIdentifier + 'OriginBonus" value="' + firstBonus + '" data-comp="' + firstComp + '" readonly="readonly" /></div></div>');
+				}
+			} else if (technicalName == 'belongingCommunity') {
+				$('#' + originIdentifier + 'OriginDetails').append('<div class="form-row"><div class="col">' + translate('competence', compComunity) + '</div><div class="col-md-2"><input type="number" class="form-control ' + originIdentifier + 'OriginBonus belongingCommunity" value="' + originArray[value][comp] + '" data-comp="' + compComunity + '" readonly="readonly" /></div></div>');
+			}
+		} else {
+			$('#' + originIdentifier + 'OriginDetails').append('<div class="form-row"><div class="col">' + translate('competence', comp) + '</div><div class="col-md-2"><input type="number" class="form-control ' + originIdentifier + 'OriginBonus" value="' + originArray[value][comp] + '" data-comp="' + comp + '" readonly="readonly" /></div></div>');
+		}
+	}
+
+	refreshCompetences();
+	refreshCmpPoint();
+}
+
+function changeGeographicOrigin(value){
+	changeOrigin('geographic', geographicOrigin, value);
+}
+
+function changeSocialOrigin(value){
+	changeOrigin('social', socialOrigin, value);
+}
+
+function changeFormationOrigin(value){
+	changeOrigin('formation', formationOrigin, value);
+}
 
 $(function(){
 	$("#pc-to-pa").change(function(){
@@ -429,44 +560,54 @@ $(function(){
 	for(let categoryName in comps){
 		let category = comps[categoryName];
 		let categoryHidden = true;
+		let categoryRow = document.createElement("tr");
+		$(categoryRow).addClass('table-primary');
+		$(categoryRow).attr('id', 'category-' + categoryName);
+		$(categoryRow).append('<td colspan="5" class="compHeader">' + translate("competence", categoryName) + '</td>');
+		$("#compTable").append(categoryRow);
 		for(let compName in category){
-			//Make X comp invisible
+
+			let compRow = document.createElement("tr");
+			$(compRow).attr('id', 'competence-' + compName);
+			let specificity = '';
+			if(category[compName].requirement){
+				specificity+=' †';
+			}
+			if(category[compName].limiting){
+				specificity+=' •';
+			}
+			if(category[compName].naturalIncrease){
+				specificity+=' (PN)';
+			}
+
+			let baseValue = 0;
+			let sum = 0;
+			for (let i=0; i<category[compName].attr.length; i++) {
+				let attrVal = parseInt($("#" + category[compName].attr[i] + "-field").val());
+				sum += tables["attributesToBase"][attrVal];
+			}
+			$(this).val(sum);
+
+			$(compRow).append('<td>' + translate("competence", compName) + specificity + '</td>')
+			$(compRow).append('<td class="compAttr">' + category[compName].attr[0] + '/' + category[compName].attr[1] + '</td>');
+			$(compRow).append('<td><input type="number" class="form-control cmp-base"    id="' + compName + '-base-field"    value="' + baseValue + '" readonly="readonly" /></td>');
 			if(category[compName].base !== null){
-				if(categoryHidden){
-					//First row of the category
-					$("#compTable").append('<tr class="table-primary"><td colspan="5" class="compHeader">' + translate("competence",categoryName) + '</td></tr>');
-					categoryHidden = false;
-				}
+				categoryHidden = false;
 
-				let compRow = document.createElement("tr");
-				let specificity = '';
-				if(category[compName].requirement){
-					specificity+=' †';
-				}
-				if(category[compName].limiting){
-					specificity+=' •';
-				}
-				if(category[compName].naturalIncrease){
-					specificity+=' (PN)';
-				}
-
-				let baseValue = 0;
-				let sum = 0;
-				for (let i=0; i<category[compName].attr.length; i++) {
-					let attrVal = parseInt($("#" + category[compName].attr[i] + "-field").val());
-					sum += tables["attributesToBase"][attrVal];
-				}
-				$(this).val(sum);
-
-				$(compRow).append('<td>' + translate("competence",compName) + specificity + '</td>')
-				$(compRow).append('<td class="compAttr">' + category[compName].attr[0] + '/' + category[compName].attr[1] + '</td>');
-				$(compRow).append('<td><input type="number" class="form-control cmp-base"    id="' + compName + '-base-field"    value="' + baseValue + '" readonly="readonly" /></td>');
 				$(compRow).append('<td><input type="number" class="form-control cmp-mastery" id="' + compName + '-mastery-field" value="' + category[compName].base + '" min="' + category[compName].base + '" /></td>');
 				$(compRow).append('<td><input type="number" class="form-control cmp-total"   id="' + compName + '-total-field"   value="' + (baseValue + category[compName].base) + '" readonly="readonly" /></td>');
-				$("#compTable").append(compRow);
+			} else {
+				$(compRow).append('<td><input type="text" class="form-control cmp-mastery" id="' + compName + '-mastery-field" value="X" readonly="readonly" /></td>');
+				$(compRow).append('<td><input type="text" class="form-control cmp-total"   id="' + compName + '-total-field"   value="X" readonly="readonly" /></td>');
+				$(compRow).hide();
 			}
+			$("#compTable").append(compRow);
+		}
+		if(categoryHidden){
+			$(categoryRow).hide();
 		}
 	}
+
 	let careerSelect = $("#archetype-select");
 	for (let careerId in career) {
 		let localeName = translate("career", careerId);
@@ -482,12 +623,77 @@ $(function(){
 		let carrerId = careerSelect[0].options[careerSelect[0].selectedIndex].id.split("-")[0];
 		setCareer(carrerId);
 	}
+
 	$(careerSelect).selectpicker('refresh');
+
 	$(".cmp-mastery").on("change", function(){
 		let cmpId = $(this).attr('id').split("-")[0];
 		refreshOneCompetence($("#".concat(cmpId).concat("-total-field")));
 		refreshCmpPoint();
 	});
 	
-	refreshCompetences();
+	$(document).on("click", '.x-competence', function(){
+		buyXcomp($(this));
+		let cmpId = $(this).attr('id').split("-")[0];
+		refreshOneCompetence($("#".concat(cmpId).concat("-total-field")));
+		refreshCmpPoint();
+	});
+	
+	
+	for(let name in geographicOrigin){
+		$('#geographicOrigin').append('<option value="' + name + '">' + translate('competence', name) + '</option>');
+	}
+
+	for(let name in socialOrigin){
+		$('#socialOrigin').append('<option value="' + name + '">' + translate('competence', name) + '</option>');
+	}
+	
+	for(let name in formationOrigin){
+		$('#formationOrigin').append('<option value="' + name + '">' + translate('competence', name) + '</option>');
+	}
+	
+	for(let name in nations){
+		$('#belongingCommunity').append('<option value="' + name + '">' + translate('competence', name) + '</option>');
+	}
+	
+	$('#belongingCommunity').on("change", function(){
+		changeGeographicOrigin($('#geographicOrigin').val());
+		changeSocialOrigin($('#socialOrigin').val());
+		changeFormationOrigin($('#formationOrigin').val());
+	});
+
+	$('#geographicOrigin').on("change", function(){
+		changeGeographicOrigin($(this).val());
+	});
+	$('#socialOrigin').on("change", function(){
+		changeSocialOrigin($(this).val());
+	});
+	$('#formationOrigin').on("change", function(){
+		changeFormationOrigin($(this).val());
+	});
+	
+	$(document).on("change", '.geographicOriginChoice', function(){
+		let currentOption = $(this).find(':selected');
+		$(this).parent().next().children('.geographicOriginBonus:first-child').attr('data-comp',currentOption.val()).val(currentOption.attr('data-bonus'));
+		refreshCompetences();
+		refreshCmpPoint();
+	});
+	
+	$(document).on("change", '.socialOriginChoice', function(){
+		let currentOption = $(this).find(':selected');
+		$(this).parent().next().children('.socialOriginBonus:first-child').attr('data-comp',currentOption.val()).val(currentOption.attr('data-bonus'));
+		refreshCompetences();
+		refreshCmpPoint();
+	});
+	
+	$(document).on("change", '.formationOriginChoice', function(){
+		let currentOption = $(this).find(':selected');
+		$(this).parent().next().children('.formationOriginBonus:first-child').attr('data-comp',currentOption.val()).val(currentOption.attr('data-bonus'));
+		refreshCompetences();
+		refreshCmpPoint();
+	});
+	
+	changeGeographicOrigin($('#geographicOrigin').val());
+	changeSocialOrigin($('#socialOrigin').val());
+	changeFormationOrigin($('#formationOrigin').val());
 });

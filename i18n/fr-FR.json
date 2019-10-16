@@ -121,7 +121,7 @@ var locale = {
 		"monitoring": "Espionnage/Surveillance",
 		"atmosphericBattlesuits": "Manoeuvre d’armures [atmosphériques/spaciales]",
 		"externalBattlesuits": "Manoeuvre d’armures [externes]",
-		"underwaterBattlesuits": "Manoeuvre d’armures [sousMarines]",
+		"underwaterBattlesuits": "Manoeuvre d’armures [sous Marines]",
 		"fighterFlying": "Pilotage [Chasseurs]",
 		"vesselsPilotage": "Pilotage [Navires]",
 		"spacecraftDriving": "Pilotage [Engins spatiaux/atmosphériques]",

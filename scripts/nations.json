@@ -1,0 +1,17 @@
+var nations = {
+		"hegemony" : "natHegemonie",
+		"redLeague" : "natRedLeague",
+		"coralRepublic" : "natCoralRepublic",
+		"equinoxe" : "natEquinoxe",
+		"mediterranneanUnion" : "natMediterraneanUnion",
+		"polarAlliance" : "natPolarAlliance",
+		"amazonia" : "natAmazonia",
+		"riftState" : "natRiftState",
+		"enderby" : "natEnderby",
+		"capFederation" : "natCapFederation",
+		"fuegoLibertad" : "natFuegoLibertad",
+		"lemurie" : "natLemurie",
+		"rodhia" : "natRodhia",
+		"indus" : "natIndus",
+		"pirateCommunity" : "natPirate",
+}

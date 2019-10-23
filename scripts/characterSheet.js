@@ -75,6 +75,13 @@ function refreshOneCompetence(cmp) {
 				return false;
 			}
 		});
+		$('.schoolOriginBonus').each(function(){
+			if($(this).attr('data-comp') == compId){
+				mastMin+= parseInt($(this).val());
+				//Break
+				return false;
+			}
+		});
 		
 		let careerId = getSelectedCarrerId();
 		if((mastMin < -3) && (mastVal === 'X' || mastVal < -3)){
@@ -86,6 +93,7 @@ function refreshOneCompetence(cmp) {
 			cmp.val('X');
 
 			if(isCarrerCmp(careerId, compId)){
+				cmp.parents('tr').show();
 				cmp.parents('tr').addClass('table-warning');
 			} else {
 				cmp.parents('tr').hide();
@@ -307,7 +315,7 @@ function setCareer(careerId){
 		select.setAttribute("multiple", "multiple");
 		select.setAttribute("data-selected-text-format", "count");
 		select.setAttribute("data-max-options", competenceChoice[i].number);
-		select.setAttribute("onchange", "refreshCmpPoint()");
+		select.setAttribute("onchange", "refreshCompetences();refreshCmpPoint()");
 		
 		let compArray = competenceChoice[i].competence
 		for (let i = 0; i < compArray.length; i++) {
@@ -472,7 +480,7 @@ function changeOrigin(originIdentifier, originArray, value){
 		if(comp.startsWith('$')){
 			let technicalName = comp.substring(1);
 			let compComunity = nations[$('#belongingCommunity').val()];
-			if(technicalName.startsWith('choice')){
+			if(technicalName == 'choice'){
 				for(let i=0;i<originArray[value][comp].length;i++){
 					let select = '<select class="' + originIdentifier + 'OriginChoice form-control">';
 					let firstBonus = undefined;
@@ -519,6 +527,10 @@ function changeFormationOrigin(value){
 	changeOrigin('formation', formationOrigin, value);
 }
 
+function changeSchoolOrigin(value){
+	changeOrigin('school', schoolOrigin, value);
+}
+
 $(function(){
 	$("#pc-to-pa").change(function(){
 		$("#attribute-points").val($("#attribute-points").val() + 2 * $(this).val());
@@ -542,31 +554,29 @@ $(function(){
 		refreshOneNaturalAttr(attrId);
 	});
 	document.getElementById("hiden-file-input").onchange = (function (e) {
-	let file = e.target.files[0]; 
-	let reader = new FileReader();
-	reader.readAsText(file,'UTF-8');
-	reader.onload = readerEvent => {
-		let content = readerEvent.target.result;
-		try {
-			let jsonObj = JSON.parse(content);
-			loadCharacterSheet(jsonObj);
-	    } catch (e) {
-	    	console.error(e);
-	    	showLoadFailed();
-	    }
-	}
+		let file = e.target.files[0]; 
+		let reader = new FileReader();
+		reader.readAsText(file,'UTF-8');
+		reader.onload = readerEvent => {
+			let content = readerEvent.target.result;
+			try {
+				let jsonObj = JSON.parse(content);
+				loadCharacterSheet(jsonObj);
+		    } catch (e) {
+		    	console.error(e);
+		    	showLoadFailed();
+		    }
+		}
 	});
 	
 	for(let categoryName in comps){
 		let category = comps[categoryName];
-		let categoryHidden = true;
 		let categoryRow = document.createElement("tr");
 		$(categoryRow).addClass('table-primary');
 		$(categoryRow).attr('id', 'category-' + categoryName);
 		$(categoryRow).append('<td colspan="5" class="compHeader">' + translate("competence", categoryName) + '</td>');
 		$("#compTable").append(categoryRow);
 		for(let compName in category){
-
 			let compRow = document.createElement("tr");
 			$(compRow).attr('id', 'competence-' + compName);
 			let specificity = '';
@@ -592,7 +602,6 @@ $(function(){
 			$(compRow).append('<td class="compAttr">' + category[compName].attr[0] + '/' + category[compName].attr[1] + '</td>');
 			$(compRow).append('<td><input type="number" class="form-control cmp-base"    id="' + compName + '-base-field"    value="' + baseValue + '" readonly="readonly" /></td>');
 			if(category[compName].base !== null){
-				categoryHidden = false;
 
 				$(compRow).append('<td><input type="number" class="form-control cmp-mastery" id="' + compName + '-mastery-field" value="' + category[compName].base + '" min="' + category[compName].base + '" /></td>');
 				$(compRow).append('<td><input type="number" class="form-control cmp-total"   id="' + compName + '-total-field"   value="' + (baseValue + category[compName].base) + '" readonly="readonly" /></td>');
@@ -602,9 +611,6 @@ $(function(){
 				$(compRow).hide();
 			}
 			$("#compTable").append(compRow);
-		}
-		if(categoryHidden){
-			$(categoryRow).hide();
 		}
 	}
 
@@ -641,25 +647,30 @@ $(function(){
 	
 	
 	for(let name in geographicOrigin){
-		$('#geographicOrigin').append('<option value="' + name + '">' + translate('competence', name) + '</option>');
+		$('#geographicOrigin').append('<option value="' + name + '">' + translate('origin', name) + '</option>');
 	}
 
 	for(let name in socialOrigin){
-		$('#socialOrigin').append('<option value="' + name + '">' + translate('competence', name) + '</option>');
+		$('#socialOrigin').append('<option value="' + name + '">' + translate('origin', name) + '</option>');
 	}
 	
 	for(let name in formationOrigin){
-		$('#formationOrigin').append('<option value="' + name + '">' + translate('competence', name) + '</option>');
+		$('#formationOrigin').append('<option value="' + name + '">' + translate('origin', name) + '</option>');
+	}
+	
+	for(let name in schoolOrigin){
+		$('#schoolOrigin').append('<option value="' + name + '">' + translate('origin', name) + '</option>');
 	}
 	
 	for(let name in nations){
-		$('#belongingCommunity').append('<option value="' + name + '">' + translate('competence', name) + '</option>');
+		$('#belongingCommunity').append('<option value="' + name + '">' + translate('nation', name) + '</option>');
 	}
 	
 	$('#belongingCommunity').on("change", function(){
 		changeGeographicOrigin($('#geographicOrigin').val());
 		changeSocialOrigin($('#socialOrigin').val());
 		changeFormationOrigin($('#formationOrigin').val());
+		changeSchoolOrigin($('#schoolOrigin').val());
 	});
 
 	$('#geographicOrigin').on("change", function(){
@@ -671,6 +682,9 @@ $(function(){
 	$('#formationOrigin').on("change", function(){
 		changeFormationOrigin($(this).val());
 	});
+	$('#schoolOrigin').on("change", function(){
+		changeSchoolOrigin($(this).val());
+	});
 	
 	$(document).on("change", '.geographicOriginChoice', function(){
 		let currentOption = $(this).find(':selected');
@@ -678,17 +692,21 @@ $(function(){
 		refreshCompetences();
 		refreshCmpPoint();
 	});
-	
 	$(document).on("change", '.socialOriginChoice', function(){
 		let currentOption = $(this).find(':selected');
 		$(this).parent().next().children('.socialOriginBonus:first-child').attr('data-comp',currentOption.val()).val(currentOption.attr('data-bonus'));
 		refreshCompetences();
 		refreshCmpPoint();
 	});
-	
 	$(document).on("change", '.formationOriginChoice', function(){
 		let currentOption = $(this).find(':selected');
 		$(this).parent().next().children('.formationOriginBonus:first-child').attr('data-comp',currentOption.val()).val(currentOption.attr('data-bonus'));
+		refreshCompetences();
+		refreshCmpPoint();
+	});
+	$(document).on("change", '.schoolOriginChoice', function(){
+		let currentOption = $(this).find(':selected');
+		$(this).parent().next().children('.schoolOriginBonus:first-child').attr('data-comp',currentOption.val()).val(currentOption.attr('data-bonus'));
 		refreshCompetences();
 		refreshCmpPoint();
 	});

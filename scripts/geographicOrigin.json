@@ -17,13 +17,12 @@ var geographicOrigin = {
 			"underwaterBattlesuits" : 1,
 			"scootersDriving" : 2,
 			"electronic" : 1,
-
 			"$choice": [
 				{
 					"mechanicsMachinery" : 2,
 					"farming" : 2,
 				},
-				],
+			],
 		},
 		"mediumStation" : {
 			"orientation" : 1,

@@ -50,9 +50,9 @@ var formationOrigin = {
 			],
 		},
 		"technicalWorkshop" : {
-			"bureaucratie" : 1,
+			"bureaucracy" : 1,
 			"education" : 1,
-			"electronics" : 1,
+			"electronic" : 1,
 			"mechanicsLifeSupport" : 2,
 			"mechanicsMachinery" : 2,
 			"$choice" : [

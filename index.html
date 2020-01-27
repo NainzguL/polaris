@@ -168,9 +168,12 @@
 			<!-- Competence -->
 			<!-- Note the list of competence must be generate with php from the compt.json file -->
 			<h1>Compétence</h1>
-			<div class="form-row">
+			<div class="form-row align-items-center">
 				<div class="col-auto">
 					<label>Point de compétence : <input type="number" id="competence-point-field" readonly="readonly" value="0" min="0" class="form-control"/></label>
+				</div>
+				<div class="col-auto">
+					<label>&nbsp;<button type="button" class="btn btn-danger form-control" onclick="resetCompetences()">Remettre à zéro</button></label>
 				</div>
 			</div>
 			<table class="table-bordered" id="compTable">

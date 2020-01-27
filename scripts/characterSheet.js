@@ -217,8 +217,7 @@ function isCarrerCmp(careerId, compId) {
 	let bitchyCompetence = career[careerId].bitchyCompetence
 	for (let i = 0; i < bitchyCompetence.length; i++) {
 		if (bitchyCompetence[i] === "natOriginNation") {
-			//TODO find orgine nation comp
-			if ("natEquinoxe" === compId) {
+			if (compId === nations[$('#belongingCommunity').val()]) {
 				return true;
 			}
 		}
@@ -260,6 +259,17 @@ function refreshLeftPc() {
 
 function refreshCompetences() {
 	$(".cmp-total").map(function(){ refreshOneCompetence($(this)); });
+}
+
+function resetCompetences() {
+	$(".cmp-mastery").map(function(){
+		if($(this).val() !== 'X'){
+			$(this).val($(this).attr('min'));
+		}
+		let cmpId = $(this).attr('id').split("-")[0];
+		refreshOneCompetence($("#".concat(cmpId).concat("-total-field")));
+	});
+	refreshCmpPoint();
 }
 
 function updateRelation(careerIdArg) {
@@ -398,6 +408,25 @@ function exportCaracJson() {
 	characterSheet.attribute.int = parseInt($("#int-field").val());
 	characterSheet.attribute.vol = parseInt($("#vol-field").val());
 	characterSheet.attribute.pre = parseInt($("#pre-field").val());
+	
+	characterSheet.belongingCommunity = $('#belongingCommunity').val();
+	characterSheet.geographicOrigin = $('#geographicOrigin').val();
+	characterSheet.socialOrigin = $('#socialOrigin').val();
+	characterSheet.formationOrigin = $('#formationOrigin').val();
+	characterSheet.schoolOrigin = $('#schoolOrigin').val();
+	$('select.geographicOriginChoice').each(function(){
+		characterSheet.originChoices.geographic.push($(this).val());
+	});
+	$('select.socialOriginChoice').each(function(){
+		characterSheet.originChoices.social.push($(this).val());
+	});
+	$('select.formationOriginChoice').each(function(){
+		characterSheet.originChoices.formation.push($(this).val());
+	});
+	$('select.schoolOriginChoice').each(function(){
+		characterSheet.originChoices.school.push($(this).val());
+	});
+	
 	for(let categoryName in comps){
 		let category = comps[categoryName];
 		for(let compName in category){
@@ -436,6 +465,36 @@ function loadCharacterSheet(characterSheet) {
 	$("#vol-field").val(characterSheet.attribute.vol);
 	$("#pre-field").val(characterSheet.attribute.pre);
 	
+	$('#belongingCommunity').val(characterSheet.belongingCommunity);
+
+	$('#geographicOrigin').val(characterSheet.geographicOrigin);
+	changeGeographicOrigin(characterSheet.geographicOrigin);
+	let currentIndex = 0;
+	$('select.geographicOriginChoice').each(function(){
+		$(this).val(characterSheet.originChoices.geographic[currentIndex++])
+	});
+
+	$('#socialOrigin').val(characterSheet.socialOrigin);
+	changeSocialOrigin(characterSheet.socialOrigin);
+	currentIndex = 0;
+	$('select.socialOriginChoice').each(function(){
+		$(this).val(characterSheet.originChoices.social[currentIndex++])
+	});
+
+	$('#formationOrigin').val(characterSheet.formationOrigin);
+	changeFormationOrigin(characterSheet.formationOrigin);
+	currentIndex = 0;
+	$('select.formationOriginChoice').each(function(){
+		$(this).val(characterSheet.originChoices.formation[currentIndex++])
+	});
+
+	$('#schoolOrigin').val(characterSheet.schoolOrigin);
+	changeSchoolOrigin(characterSheet.schoolOrigin);
+	currentIndex = 0;
+	$('select.schoolOriginChoice').each(function(){
+		$(this).val(characterSheet.originChoices.school[currentIndex++])
+	});
+
 	for(let categoryName in comps){
 		let category = comps[categoryName];
 		for(let compName in category){

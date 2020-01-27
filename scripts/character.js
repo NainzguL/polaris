@@ -5,10 +5,17 @@ let empyCharacterSheet = {
 	"age": 0,
 	"gender": "",
 	"fertility": false,
-	"birthPlace": "",
-	"socialClass": "",
-	"formation": "",
-	"higherEducation": "",
+	"belongingCommunity" : "",
+	"geographicOrigin" : "",
+	"socialOrigin" : "",
+	"formationOrigin" : "",
+	"schoolOrigin" : "",
+	"originChoices" : {
+		"geographic" : [],
+		"social" : [],
+		"formation" : [],
+		"school" : [],
+	},
 	"creation": {
 		"pcToPa": 0,
 		"yearExperience": 0
@@ -198,6 +205,7 @@ let empyCharacterSheet = {
 };
 
 function newEmpyCharacterSheet() {
+	//Clone the template
 	return JSON.parse(JSON.stringify(empyCharacterSheet));
 }
 

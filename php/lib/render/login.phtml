@@ -1,0 +1,20 @@
+<div class="container">
+
+	<h1>Login</h1>
+
+	<?php echo ($this->getAdditionalInfoHtml()) ?>
+
+    <form name="login" method="post" action="login.php">
+        <div class="form-group">
+			<label>E-Mail:</label>
+			<input name="email" type="email" class="form-control" />
+		</div>  
+        <div class="form-group">
+			<label>Mot de passe:</label>
+			<input name="password" type="password" class="form-control" />
+		</div>
+		<button type="submit" class="btn btn-primary">Connexion </button>
+		<a href="new_account.php" class="btn btn-primary" role="button">Créer un compte</a>
+	</form>
+
+</div>

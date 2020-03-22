@@ -1,2 +1,5 @@
 /.project
 /.settings/
+/container/db_root_pwd.txt
+/container/php_db_pwd.txt
+/public/index.php

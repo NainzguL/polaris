@@ -1,0 +1,11 @@
+USE polaris;
+
+CREATE TABLE Carrer (
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    contact DOUBLE NOT NULL,
+    allySupplier DOUBLE NOT NULL,
+    rival DOUBLE NOT NULL,
+    enemies DOUBLE NOT NULL
+)
+ENGINE=INNODB;

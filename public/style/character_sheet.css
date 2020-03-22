@@ -1,0 +1,23 @@
+
+.compAttr {
+	text-transform: uppercase;
+}
+
+.compHeader {
+	font-weight: bold;
+	text-align: center;
+}
+
+.careerHeader {
+	margin: auto;
+	vertical-align: middle
+}
+
+#compTable {
+	margin: auto;
+}
+
+#originDetails {
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+}

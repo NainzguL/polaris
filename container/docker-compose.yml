@@ -1,0 +1,62 @@
+version: '3.7'
+
+networks:
+  backend:
+
+services:
+  php-fpm:
+    build:
+      context: ../
+      dockerfile: ./container/php/Dockerfile
+    image: pola-php
+    networks:
+      - backend
+    secrets:
+      - php_db_pwd
+  nginx:
+    build:
+      context: ../
+      dockerfile: ./container/nginx/Dockerfile
+    image: pola-nginx
+    networks:
+      - backend
+    ports:
+      - "8080:80"
+    depends_on:
+      - php-fpm
+  flyway:
+    build:
+      context: ../
+      dockerfile: ./container/flyway/Dockerfile
+    image: pola-fill-db
+    command: -url=jdbc:mysql://db -schemas=polaris -user=root -pwdfile=/run/secrets/db_root_pwd -connectRetries=60 migrate
+    networks:
+      - backend
+    depends_on:
+      - db
+    secrets:
+      - db_root_pwd
+  db:
+    build:
+      context: ../
+      dockerfile: ./container/db/Dockerfile
+    image: pola-db
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_pwd
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
+    networks:
+      - backend
+    secrets:
+      - db_root_pwd
+      - php_db_pwd
+    volumes:
+      - my-db:/var/lib/mysql
+
+volumes:
+  my-db:
+
+secrets:
+  db_root_pwd:
+    file: db_root_pwd.txt
+  php_db_pwd:
+    file: php_db_pwd.txt

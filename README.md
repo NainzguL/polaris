@@ -23,6 +23,8 @@ To delete the stack :
 docker stack rm  pola
 ```
 
+/!\ If you are using git for windows, line ending are automatically converted, reverts this for the bash files (container/db/create_user.sh and container/flyway/entry_point.sh).  
+
 ## Architecture
 
 ### DB

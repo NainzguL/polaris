@@ -15,6 +15,4 @@ case $i in
 esac
 done
 
-echo "${args[@]}"
-
 /flyway/flyway "${args[@]}"

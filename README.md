@@ -5,7 +5,11 @@ A web application that allows player and game master to create and manage there 
 
 ## Deploy with Docker
 
-First install Docker. You may also need to enable the Swarm mode (`docker swarm init`). Then create the files that will contain the DB password in the container folder: db_root_pwd.txt and php_db_pwd.txt (you may use the script create_secret.sh). Finally, deploy the stack with docker stack:
+First install docker, with docker-compose and the Swarm mode enabled (`docker swarm init`).
+
+Then create the files that will contain the DB password in the container folder: db_root_pwd.txt and php_db_pwd.txt (you may use the script create_secret.sh). 
+
+Deploy the stack with docker stack:
 
 ```
 cd container
@@ -13,6 +17,13 @@ docker-compose build
 docker stack deploy -c .\docker-compose.yml pola
 ```
 Then the website is accessible on port 8080: http://127.0.0.1:8080/
+
+To delete the stack :
+```
+docker stack rm  pola
+```
+
+/!\ If you are using git for windows, line ending are automatically converted, reverts this for the bash files (container/db/create_user.sh and container/flyway/entry_point.sh).  
 
 ## Architecture
 

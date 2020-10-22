@@ -9,6 +9,8 @@ services:
       context: ../
       dockerfile: ./container/php/Dockerfile
     image: pola-php
+    environment:
+      PHP_DB_PASSWORD_FILE: /run/secrets/php_db_pwd
     networks:
       - backend
     secrets:
@@ -43,6 +45,7 @@ services:
     image: pola-db
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_pwd
+      PHP_DB_PASSWORD_FILE: /run/secrets/php_db_pwd
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
     networks:
       - backend

@@ -7,7 +7,7 @@ $config = array(
     "db" => array(
         "dbname" => "polaris",
         "user" => "php_user",
-        "pwd_file" => "/run/secrets/php_db_pwd",
+        "pwd_file" => getenv('PHP_DB_PASSWORD_FILE'),
         "host" => "db"
     )
 );

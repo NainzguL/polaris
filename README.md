@@ -83,7 +83,7 @@ Deploy the stack, go into the DB container and test your SQL script.
 
 ```
 docker container exec -it <name or id of the pola-db container> bash -l
-root@pola-db:/# mysql --user=root  "--password=$(< /run/secrets/db_root_pwd)" polaris
+root@pola-db:/# mysql --user=root  "--password=$MYSQL_ROOT_PASSWORD" polaris
 mysql> 
 ```
 

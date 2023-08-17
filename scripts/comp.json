@@ -888,7 +888,15 @@ var comps = {
 			"base": null,
 			"attr": ["vol", "vol"],
 		},
-		"polarisPower": {
+		"polarisPower1": {
+			"base": null,
+			"attr": ["int", "vol"],
+		},
+		"polarisPower2": {
+			"base": null,
+			"attr": ["int", "vol"],
+		},
+		"polarisPower3": {
 			"base": null,
 			"attr": ["int", "vol"],
 		},

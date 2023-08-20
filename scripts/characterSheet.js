@@ -49,6 +49,9 @@ function refreshOneCompetence(cmp) {
 		//Mastery
 		let mastField = $("#".concat(compId).concat("-mastery-field"));
 		let mastVal = mastField.val();
+		if(mastVal === null || mastVal === ''){
+			mastVal = -4;
+		}
 		let mastMin = comp.base;
 		if(mastMin === null){
 			mastMin = -4;
@@ -138,6 +141,7 @@ function refreshOneCompetence(cmp) {
 					cmp.val('X');
 				}
 			} else {
+				cmp.parents('tr').removeClass('table-warning');
 				cmp.attr('type', 'number')
 				cmp.val(baseVal + mastVal);
 			}
@@ -450,9 +454,26 @@ function loadCharacterSheet(characterSheet) {
 	setCareer(characterSheet.archetype);
 	
 	$("#year-experience-field").val(characterSheet.creation.yearExperience);
+	let unsetChoices = characterSheet.careerCompetenceChoise;
 	$(".carrer-cmp-choice").map(function(){
 		let cmpChoiseSelect = $(this);
-		cmpChoiseSelect.selectpicker('val', characterSheet.careerCompetenceChoise);
+
+		let possibleChoices = [];
+		cmpChoiseSelect.children('option').each(function (index, element){
+			possibleChoices.push($(element).val());
+		});
+
+		let newVal = []
+		for(let index in unsetChoices){
+			if (possibleChoices.includes(unsetChoices[index])){
+				newVal.push(unsetChoices[index]);
+			}
+		}
+		for(let choice in newVal){
+			unsetChoices.splice(unsetChoices.indexOf(newVal[choice]), 1);
+		}
+
+		cmpChoiseSelect.selectpicker('val', newVal);
 		cmpChoiseSelect.selectpicker('refresh');
 	});
 	$("#pc-to-pa").val(characterSheet.creation.pcToPa);
@@ -472,28 +493,28 @@ function loadCharacterSheet(characterSheet) {
 	let currentIndex = 0;
 	$('select.geographicOriginChoice').each(function(){
 		$(this).val(characterSheet.originChoices.geographic[currentIndex++])
-	});
+	}).trigger('change');
 
 	$('#socialOrigin').val(characterSheet.socialOrigin);
 	changeSocialOrigin(characterSheet.socialOrigin);
 	currentIndex = 0;
 	$('select.socialOriginChoice').each(function(){
 		$(this).val(characterSheet.originChoices.social[currentIndex++])
-	});
+	}).trigger('change');
 
 	$('#formationOrigin').val(characterSheet.formationOrigin);
 	changeFormationOrigin(characterSheet.formationOrigin);
 	currentIndex = 0;
 	$('select.formationOriginChoice').each(function(){
 		$(this).val(characterSheet.originChoices.formation[currentIndex++])
-	});
+	}).trigger('change');
 
 	$('#schoolOrigin').val(characterSheet.schoolOrigin);
 	changeSchoolOrigin(characterSheet.schoolOrigin);
 	currentIndex = 0;
 	$('select.schoolOriginChoice').each(function(){
 		$(this).val(characterSheet.originChoices.school[currentIndex++])
-	});
+	}).trigger('change');
 
 	for(let categoryName in comps){
 		let category = comps[categoryName];
